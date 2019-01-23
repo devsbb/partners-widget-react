@@ -1,6 +1,6 @@
 {
     "(src|stories|webpack)/**/*.{js,jsx,json,css,scss}": [
-        "prettier --write",
+        "yarn run lint",
         "git add"
     ]
 }
