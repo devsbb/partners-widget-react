@@ -1,1 +1,3 @@
-const dfgdf = {};
+const productService = {};
+
+export default productService;

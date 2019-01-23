@@ -11,7 +11,7 @@
     "build": "yarn run webpack --config ./webpack/webpack.config.prod.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "lint": "eslint --debug"
+    "lint": "eslint ./src/*"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
