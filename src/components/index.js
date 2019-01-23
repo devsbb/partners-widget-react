@@ -1,5 +1,3 @@
-export function add(a, b) {
-    return [a, b].map(x => x).reduce((summ, x) => summ + x, 0);
-}
+import PartnersWidget from './partnersWidget';
 
-add(1, 2);
+export { PartnersWidget };
