@@ -2,7 +2,6 @@ const path = require('path');
 const paths = require('./paths');
 
 module.exports = {
-    mode: 'development',
     entry: {
         package: [require.resolve(path.join(paths.source, 'index.js'))],
     },

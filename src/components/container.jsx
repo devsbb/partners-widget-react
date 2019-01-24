@@ -6,7 +6,10 @@ const defaultStyles = {
     padding: '16px',
     borderRadius: '8px',
     minWidth: '400px',
-    minHeight: '200px',
+    display: 'inline-flex',
+    flexDirection: 'column',
+    justifyContent: 'stretch',
+    alignItems: 'center',
 };
 
 const Container = ({ style, children }) => {
@@ -17,10 +20,12 @@ const Container = ({ style, children }) => {
 
 Container.propTypes = {
     children: PropTypes.node,
-    style: PropTypes.objectOf(PropTypes.object()),
+    style: PropTypes.objectOf(PropTypes.object),
 };
 
 Container.defaultProps = {
     children: null,
     style: {},
 };
+
+export default Container;
