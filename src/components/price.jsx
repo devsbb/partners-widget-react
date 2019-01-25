@@ -7,7 +7,7 @@ const defaultStyles = {
     color: '#333333',
     fontSize: '24px',
     lineHeight: '32px',
-    fontStyle: 'bold',
+    fontWeight: 'bold',
 };
 
 const Price = ({ style, priceInCents }) => {
