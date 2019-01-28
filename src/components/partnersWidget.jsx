@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { GroverIcon } from '../icons';
+
 import Container from './container';
 import Button from './button';
-import GroverIcon from './groverIcon';
 import Price from './price';
 
 const PartnersWidget = () => (

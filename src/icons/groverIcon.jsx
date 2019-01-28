@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const GroverIcon = ({ style }) => (
+const GroverIcon = ({ className }) => (
     <svg
-        style={style}
+        className={className}
         width="24"
         height="24"
         viewBox="0 0 24 24"
@@ -31,11 +31,11 @@ const GroverIcon = ({ style }) => (
 );
 
 GroverIcon.propTypes = {
-    style: PropTypes.objectOf(PropTypes.object),
+    className: PropTypes.string,
 };
 
 GroverIcon.defaultProps = {
-    style: {},
+    className: null,
 };
 
 export default GroverIcon;

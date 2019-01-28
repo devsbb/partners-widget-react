@@ -1,6 +1,8 @@
 {
-    "(src|stories|webpack)/**/*.{js,jsx,json,css,scss}": [
-        "yarn run lint",
-        "git add"
-    ]
+    "linters": {
+        "(src|stories)/**/*.{js,jsx,json}": [
+            "yarn run lint",
+            "git add"
+        ]
+    }
 }

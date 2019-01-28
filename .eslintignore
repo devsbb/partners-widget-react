@@ -1,4 +1,6 @@
-.vscode
-lib/*
-static/*
-node_modules/*
+**/.vscode
+**/lib/*
+**/static/*
+**/node_modules/*
+
+**/src/**/*.(css|scss)

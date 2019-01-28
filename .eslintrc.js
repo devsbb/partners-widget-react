@@ -8,7 +8,7 @@ module.exports = {
         'import/no-extraneous-dependencies': [
             'error',
             {
-                devDependencies: ['.storybook/**', 'stories/**'],
+                devDependencies: ['.storybook/**', 'stories/**', 'webpack/**'],
             },
         ],
     },
