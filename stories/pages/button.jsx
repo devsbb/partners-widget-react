@@ -3,7 +3,8 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { Button, GroverIcon } from '../../src/components';
+import { Button } from '../../src/components';
+import { GroverIcon } from '../../src/icons';
 
 export default function init() {
     storiesOf('Button', module)
