@@ -4,7 +4,7 @@ const precss = require('precss');
 const postcssFlexbugsFixes = require('postcss-flexbugs-fixes');
 const postcssAutoreset = require('postcss-autoreset');
 const postcssInitial = require('postcss-initial');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const postcssFontMagician = require('postcss-font-magician');
 
 const paths = require('./paths');
 
@@ -23,11 +23,6 @@ module.exports = {
         extensions: ['.js', '.json', '.jsx'],
         modules: [paths.source, paths.nodeModules],
     },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: '[name][chunkhash].css',
-        }),
-    ],
     module: {
         rules: [
             {
@@ -38,16 +33,24 @@ module.exports = {
             {
                 test: /\.(scss|css)$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: require.resolve('style-loader'),
+                        options: {
+                            insertAt: 'top',
+                            singleton: true,
+                        },
+                    },
                     {
                         loader: require.resolve('css-loader'),
                         options: {
                             importLoaders: 1,
+                            url: false,
                         },
                     },
                     {
                         loader: require.resolve('postcss-loader'),
                         options: {
+                            ident: 'postcss',
                             plugins: () => [
                                 // Support for basic SASS syntax
                                 precss,
@@ -65,6 +68,18 @@ module.exports = {
                                     rulesMatcher: 'bem',
                                 }),
                                 postcssInitial,
+                                postcssFontMagician({
+                                    variants: {
+                                        Poppins: {
+                                            '700': [],
+                                        },
+                                        Lato: {
+                                            '400': [],
+                                            '700': [],
+                                        },
+                                    },
+                                    foundries: ['google'],
+                                }),
                             ],
                         },
                     },

@@ -4,11 +4,13 @@ import { GroverIcon } from '../icons';
 
 import Container from './container';
 import Button from './button';
-import Price from './price';
+import ProductPrice from './productPrice';
+import HeaderText from './headerText';
 
 const PartnersWidget = () => (
     <Container>
-        <Price priceInCents={19999} />
+        <HeaderText>Jetzt mieten statt kaufen</HeaderText>
+        <ProductPrice priceInCents={19999} oldPriceInCents={29999} minimalPrice />
         <Button icon={GroverIcon}>Mieten mit Grover</Button>
     </Container>
 );
