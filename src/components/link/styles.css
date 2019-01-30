@@ -1,9 +1,14 @@
-.grover-widget-link {
+.grover-link {
     font-family: 'Lato', sans-serif;
     font-size: 12px;
     line-height: 17px;
     font-weight: 700;
+    text-decoration: underline;
     color: #989898;
     margin-top: 0px;
     margin-bottom: 0px;
-};
+    cursor: pointer;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

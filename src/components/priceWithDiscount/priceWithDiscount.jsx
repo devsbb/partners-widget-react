@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
-import './styles.css';
-
 import Price from '../price';
 
 const PriceWithDiscount = ({
@@ -12,16 +10,16 @@ const PriceWithDiscount = ({
     oldPriceInCents,
     priceWithDiscountInCents,
 }) => (
-    <span className={cn('grover-widget-price-with-discount', className)}>
+    <span className={cn('grover-price-with-discount', className)}>
         <Price
             key="oldPrice"
-            className={cn('grover-widget-price-with-discount__old-price', classNames.oldPrice)}
+            className={cn('grover-price-with-discount__old-price', classNames.oldPrice)}
             priceInCents={oldPriceInCents}
         />
         <Price
             key="priceWithDiscount"
             className={cn(
-                'grover-widget-price-with-discount__price-with-discount',
+                'grover-price-with-discount__price-with-discount',
                 classNames.priceWithDiscount
             )}
             priceInCents={priceWithDiscountInCents}
@@ -33,7 +31,7 @@ PriceWithDiscount.propTypes = {
     oldPriceInCents: PropTypes.number.isRequired,
     priceWithDiscountInCents: PropTypes.number.isRequired,
     className: PropTypes.string,
-    classNames: PropTypes.objectOf({
+    classNames: PropTypes.shape({
         oldPrice: PropTypes.string,
         priceWithDiscount: PropTypes.string,
     }),

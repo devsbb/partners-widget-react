@@ -4,11 +4,9 @@ import classNames from 'classnames';
 
 import ButtonText from '../buttonText';
 
-import './styles.css';
-
 const Button = ({ className, iconClassName, children, icon: Icon }) => (
-    <button type="button" className={classNames('grover-widget-button', className)}>
-        {Icon && <Icon className={classNames('grover-widget-button__icon', iconClassName)} />}
+    <button type="button" className={classNames('grover-button', className)}>
+        {Icon && <Icon className={classNames('grover-button__icon', iconClassName)} />}
         <ButtonText>{children}</ButtonText>
     </button>
 );

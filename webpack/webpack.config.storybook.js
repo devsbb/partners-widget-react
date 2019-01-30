@@ -37,7 +37,7 @@ module.exports = {
                         loader: require.resolve('style-loader'),
                         options: {
                             insertAt: 'top',
-                            singleton: true,
+                            singleton: false,
                             sourceMap: true,
                         },
                     },
@@ -45,13 +45,11 @@ module.exports = {
                         loader: require.resolve('css-loader'),
                         options: {
                             importLoaders: 1,
-                            url: false,
                         },
                     },
                     {
                         loader: require.resolve('postcss-loader'),
                         options: {
-                            ident: 'postcss',
                             plugins: () => [
                                 // Support for basic SASS syntax
                                 precss,

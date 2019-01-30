@@ -1,4 +1,4 @@
-.grover-widget-header-text {
+.grover-header-text {
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     line-height: 22px;
@@ -6,4 +6,8 @@
     color: #333333;
     margin-top: 0px;
     margin-bottom: 0px;
-};
+    cursor: default;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

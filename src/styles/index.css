@@ -1,0 +1,10 @@
+@import '../components/button/styles.css';
+@import '../components/buttonText/styles.css';
+@import '../components/container/styles.css';
+@import '../components/headerText/styles.css';
+@import '../components/link/styles.css';
+@import '../components/price/styles.css';
+@import '../components/priceText/styles.css';
+@import '../components/priceWithDiscount/styles.css';
+@import '../components/productPrice/styles.css';
+@import '../components/widget/styles.css';

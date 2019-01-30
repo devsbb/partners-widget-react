@@ -1,4 +1,4 @@
-.grover-widget-container {
+.grover-container {
     background-color: #f1f1f1;
     padding: 16px;
     border-radius: 8px;
@@ -7,4 +7,4 @@
     flex-direction: column;
     justify-content: stretch;
     align-items: flex-start;
-};
+}

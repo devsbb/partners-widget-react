@@ -1,4 +1,4 @@
-.grover-widget-button-text {
+.grover-button-text {
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     line-height: 22px;
@@ -6,4 +6,7 @@
     color: white;
     margin-top: 0px;
     margin-bottom: 0px;
-};
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

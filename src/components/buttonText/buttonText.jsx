@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import './styles.css';
-
 const ButtonText = ({ className, children }) => (
-    <p className={classNames('grover-widget-button-text', className)}>{children}</p>
+    <p className={classNames('grover-button-text', className)}>{children}</p>
 );
 
 ButtonText.propTypes = {

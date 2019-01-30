@@ -26,9 +26,9 @@ const ProductPrice = ({ className, classNames, priceInCents, oldPriceInCents, mi
 
 ProductPrice.propTypes = {
     className: PropTypes.string,
-    classNames: PropTypes.objectOf({
+    classNames: PropTypes.shape({
         price: PropTypes.string,
-        priceWithDiscount: PropTypes.objectOf({
+        priceWithDiscount: PropTypes.shape({
             container: PropTypes.string,
             oldPrice: PropTypes.string,
             priceWithDiscount: PropTypes.string,

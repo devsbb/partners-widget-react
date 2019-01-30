@@ -38,22 +38,34 @@ module.exports = {
                         options: {
                             insertAt: 'top',
                             singleton: true,
+                            sourceMap: true,
                         },
                     },
                     {
                         loader: require.resolve('css-loader'),
                         options: {
                             importLoaders: 1,
-                            url: false,
                         },
                     },
                     {
                         loader: require.resolve('postcss-loader'),
                         options: {
-                            ident: 'postcss',
                             plugins: () => [
                                 // Support for basic SASS syntax
                                 precss,
+                                postcssFontMagician({
+                                    variants: {
+                                        Poppins: {
+                                            '700': [],
+                                        },
+                                        Lato: {
+                                            '400': [],
+                                            '700': [],
+                                        },
+                                    },
+                                    foundries: ['google'],
+                                    protocol: 'https:',
+                                }),
                                 postcssFlexbugsFixes,
                                 autoprefixer({
                                     browsers: [
@@ -68,18 +80,6 @@ module.exports = {
                                     rulesMatcher: 'bem',
                                 }),
                                 postcssInitial,
-                                postcssFontMagician({
-                                    variants: {
-                                        Poppins: {
-                                            '700': [],
-                                        },
-                                        Lato: {
-                                            '400': [],
-                                            '700': [],
-                                        },
-                                    },
-                                    foundries: ['google'],
-                                }),
                             ],
                         },
                     },

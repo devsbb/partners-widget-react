@@ -1,0 +1,10 @@
+.grover-widget__header-section {
+    display: flex;
+    justify-content: space-between;
+    align-self: stretch;
+}
+
+.grover-widget__product-price {
+    margin-top: 4px;
+    margin-bottom: 6px;
+}

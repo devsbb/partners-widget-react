@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import './styles.css';
-
 const Link = ({ className, children, href, onClick }) => (
-    <a href={href} onClick={onClick} className={classNames('grover-widget-header-text', className)}>
+    <a href={href} onClick={onClick} className={classNames('grover-link', className)}>
         {children}
     </a>
 );

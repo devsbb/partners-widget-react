@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import './styles.css';
-
 const HeaderText = ({ className, children }) => (
-    <h1 className={classNames('grover-widget-header-text', className)}>{children}</h1>
+    <h1 className={classNames('grover-header-text', className)}>{children}</h1>
 );
 
 HeaderText.propTypes = {

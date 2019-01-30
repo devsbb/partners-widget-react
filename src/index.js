@@ -1,3 +1,3 @@
-import { PartnersWidget } from './components';
+import { Widget } from './components';
 
-export default PartnersWidget;
+export default Widget;

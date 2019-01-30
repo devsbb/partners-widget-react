@@ -1,4 +1,4 @@
-.grover-widget-button {
+.grover-button {
     background-color: #333333;
     height: 48px;
     border-radius: 24px;
@@ -9,6 +9,10 @@
     cursor: pointer;
 }
 
-.grover-widget-button__icon {
+.grover-button > * {
+    cursor: pointer;
+}
+
+.grover-button__icon {
     margin-right: 16px;
 }
