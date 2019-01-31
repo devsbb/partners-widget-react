@@ -7,12 +7,11 @@ const HeaderSection = ({ className, children }) => (
 
 HeaderSection.propTypes = {
     className: PropTypes.string,
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
 };
 
 HeaderSection.defaultProps = {
     className: null,
-    children: null,
 };
 
 export default HeaderSection;

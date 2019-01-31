@@ -14,14 +14,13 @@ const Link = ({ className, children, href, onClick }) => (
 
 Link.propTypes = {
     className: PropTypes.string,
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
     href: PropTypes.string,
     onClick: PropTypes.func,
 };
 
 Link.defaultProps = {
     className: null,
-    children: null,
     href: '#',
     onClick: () => {},
 };

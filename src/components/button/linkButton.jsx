@@ -26,7 +26,7 @@ LinkButton.propTypes = {
         icon: PropTypes.string,
         text: PropTypes.string,
     }),
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
     icon: PropTypes.element,
     href: PropTypes.string.isRequired,
     target: PropTypes.string,
@@ -38,7 +38,6 @@ LinkButton.defaultProps = {
         icon: null,
         text: null,
     },
-    children: null,
     icon: null,
     target: null,
 };

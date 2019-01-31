@@ -8,12 +8,11 @@ const HeaderText = ({ className, children }) => (
 
 HeaderText.propTypes = {
     className: PropTypes.string,
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
 };
 
 HeaderText.defaultProps = {
     className: null,
-    children: null,
 };
 
 export default HeaderText;

@@ -42,9 +42,9 @@ ProductPrice.propTypes = {
         discountPrice: PropTypes.string,
         originalPrice: PropTypes.string,
     }),
-    minimalPrice: PropTypes.bool,
-    discountPriceInCents: PropTypes.number,
-    originalPriceInCents: PropTypes.number,
+    minimalPrice: PropTypes.bool.isRequired,
+    discountPriceInCents: PropTypes.number.isRequired,
+    originalPriceInCents: PropTypes.number.isRequired,
 };
 
 ProductPrice.defaultProps = {
@@ -55,9 +55,6 @@ ProductPrice.defaultProps = {
         discountPrice: null,
         originalPrice: null,
     },
-    minimalPrice: false,
-    discountPriceInCents: 0,
-    originalPriceInCents: 0,
 };
 
 export default ProductPrice;

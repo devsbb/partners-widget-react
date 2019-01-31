@@ -13,11 +13,11 @@ import Link from '../link';
 import HeaderSection from './headerSection';
 
 function mapClassNamesToButtonClassNames(classNames = {}) {
-    const { buttonIconClassName, buttonTextClassName } = classNames;
+    const { buttonIcon, buttonText } = classNames;
 
     return {
-        icon: buttonIconClassName,
-        text: buttonTextClassName,
+        icon: buttonIcon,
+        text: buttonText,
     };
 }
 
@@ -59,17 +59,20 @@ const Widget = ({
                 <HeaderText className={classNames.headerText}>
                     {productName}
                 </HeaderText>
+
                 <Link
                     className={cn(
                         'grover-widget__more-info-link',
                         classNames.moreInfoLink
                     )}
+                    target="_blank"
                     href={landingPageLink}
                     onClick={moreInformationCallback}
                 >
                     More Info
                 </Link>
             </HeaderSection>
+
             <ProductPrice
                 className={cn(
                     'grover-widget__product-price',
@@ -80,8 +83,11 @@ const Widget = ({
                 originalPriceInCents={productPrice.discountPriceInCents}
                 minimalPrice
             />
+
             <LinkButton
                 icon={GroverIcon}
+                href={landingPageLink}
+                target="_blank"
                 className={classNames.button}
                 classNames={buttonClassNames}
             >

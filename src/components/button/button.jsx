@@ -23,7 +23,7 @@ Button.propTypes = {
         icon: PropTypes.string,
         text: PropTypes.string,
     }),
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
     icon: PropTypes.element,
     onClick: PropTypes.func,
 };
@@ -34,7 +34,6 @@ Button.defaultProps = {
         icon: null,
         text: null,
     },
-    children: null,
     icon: null,
     onClick: () => {},
 };

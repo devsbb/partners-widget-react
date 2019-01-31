@@ -8,12 +8,11 @@ const ButtonText = ({ className, children }) => (
 
 ButtonText.propTypes = {
     className: PropTypes.string,
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
 };
 
 ButtonText.defaultProps = {
     className: null,
-    children: null,
 };
 
 export default ButtonText;
