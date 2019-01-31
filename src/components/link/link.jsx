@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const Link = ({ className, children, href, onClick }) => (
-    <a href={href} onClick={onClick} className={classNames('grover-link', className)}>
+    <a
+        href={href}
+        onClick={onClick}
+        className={classNames('grover-link', className)}
+    >
         {children}
     </a>
 );

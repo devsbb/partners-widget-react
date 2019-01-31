@@ -5,14 +5,21 @@ import PriceText from '../priceText';
 import Price from '../price';
 import PriceWithDiscount from '../priceWithDiscount';
 
-const ProductPrice = ({ className, classNames, priceInCents, oldPriceInCents, minimalPrice }) => (
+const ProductPrice = ({
+    className,
+    classNames,
+    priceInCents,
+    oldPriceInCents,
+    minimalPrice,
+}) => (
     <PriceText className={className}>
         {minimalPrice && 'ab'}
         {oldPriceInCents ? (
             <PriceWithDiscount
                 className={classNames.priceWithDiscount.container}
                 classNames={{
-                    priceWithDiscount: classNames.priceWithDiscount.priceWithDiscount,
+                    priceWithDiscount:
+                        classNames.priceWithDiscount.priceWithDiscount,
                 }}
                 priceWithDiscountInCents={priceInCents}
                 oldPriceInCents={oldPriceInCents}

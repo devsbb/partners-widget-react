@@ -8,3 +8,11 @@
     margin-top: 4px;
     margin-bottom: 6px;
 }
+
+.grover-widget--unavailable {
+    opacity: 0.9;
+}
+
+.grover-widget--unavailable > * {
+    cursor: default;
+}

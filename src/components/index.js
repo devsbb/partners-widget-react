@@ -1,6 +1,6 @@
 import '../styles/index.css';
 
-import Button from './button';
+import Button, { LinkButton } from './button';
 import ButtonText from './buttonText';
 import Container from './container';
 import HeaderText from './headerText';
@@ -13,6 +13,7 @@ import Widget from './widget';
 
 export {
     Button,
+    LinkButton,
     ButtonText,
     Container,
     HeaderText,

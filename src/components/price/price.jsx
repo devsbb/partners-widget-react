@@ -7,7 +7,11 @@ import { formatPriceInCents } from '../../utils';
 const Price = ({ className, priceInCents }) => {
     const formattedPrice = formatPriceInCents(priceInCents);
 
-    return <strong className={classNames('grover-price', className)}>{formattedPrice}</strong>;
+    return (
+        <strong className={classNames('grover-price', className)}>
+            {formattedPrice}
+        </strong>
+    );
 };
 
 Price.propTypes = {

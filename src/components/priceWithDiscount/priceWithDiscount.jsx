@@ -13,7 +13,10 @@ const PriceWithDiscount = ({
     <span className={cn('grover-price-with-discount', className)}>
         <Price
             key="oldPrice"
-            className={cn('grover-price-with-discount__old-price', classNames.oldPrice)}
+            className={cn(
+                'grover-price-with-discount__old-price',
+                classNames.oldPrice
+            )}
             priceInCents={oldPriceInCents}
         />
         <Price

@@ -4,20 +4,23 @@ import cn from 'classnames';
 
 import ButtonText from '../buttonText';
 
-const Button = ({ className, classNames, children, icon: Icon, onClick }) => (
-    <button
-        onClick={onClick}
-        type="button"
-        className={cn('grover-button', className)}
-    >
+const LinkButton = ({
+    className,
+    classNames,
+    children,
+    icon: Icon,
+    href,
+    target,
+}) => (
+    <a href={href} target={target} className={cn('grover-button', className)}>
         {Icon && (
             <Icon className={cn('grover-button__icon', classNames.icon)} />
         )}
         <ButtonText className={classNames.text}>{children}</ButtonText>
-    </button>
+    </a>
 );
 
-Button.propTypes = {
+LinkButton.propTypes = {
     className: PropTypes.string,
     classNames: PropTypes.shape({
         icon: PropTypes.string,
@@ -25,10 +28,11 @@ Button.propTypes = {
     }),
     children: PropTypes.node,
     icon: PropTypes.element,
-    onClick: PropTypes.func,
+    href: PropTypes.string.isRequired,
+    target: PropTypes.string,
 };
 
-Button.defaultProps = {
+LinkButton.defaultProps = {
     className: null,
     classNames: {
         icon: null,
@@ -36,7 +40,7 @@ Button.defaultProps = {
     },
     children: null,
     icon: null,
-    onClick: () => {},
+    target: null,
 };
 
-export default Button;
+export default LinkButton;

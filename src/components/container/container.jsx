@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const Container = ({ children, className }) => (
-    <article className={classNames('grover-container', className)}>{children}</article>
+    <article className={classNames('grover-container', className)}>
+        {children}
+    </article>
 );
 
 Container.propTypes = {
