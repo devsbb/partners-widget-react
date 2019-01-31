@@ -6,7 +6,7 @@ import Container from './container';
 import HeaderText from './headerText';
 import Price from './price';
 import PriceText from './priceText';
-import PriceWithDiscount from './priceWithDiscount';
+import DiscountPrice from './discountPrice';
 import ProductPrice from './productPrice';
 import Link from './link';
 import Widget from './widget';
@@ -20,7 +20,7 @@ export {
     Widget,
     Price,
     PriceText,
-    PriceWithDiscount,
+    DiscountPrice,
     ProductPrice,
     Link,
 };

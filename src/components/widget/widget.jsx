@@ -12,13 +12,41 @@ import Link from '../link';
 
 import HeaderSection from './headerSection';
 
+function mapClassNamesToButtonClassNames(classNames = {}) {
+    const { buttonIconClassName, buttonTextClassName } = classNames;
+
+    return {
+        icon: buttonIconClassName,
+        text: buttonTextClassName,
+    };
+}
+
+function mapClassNamesToPriceClassNames(classNames = {}) {
+    const {
+        price,
+        discountPriceContainer,
+        discountPrice,
+        originalPrice,
+    } = classNames;
+
+    return {
+        price,
+        discountPriceContainer,
+        discountPrice,
+        originalPrice,
+    };
+}
+
 const Widget = ({
     className,
     landingPageLink,
     moreInformationCallback,
     classNames,
+    productName,
+    productPrice,
 }) => {
-    const { priceClassNames, buttonClassNames } = classNames;
+    const priceClassNames = mapClassNamesToPriceClassNames(classNames);
+    const buttonClassNames = mapClassNamesToButtonClassNames(classNames);
 
     return (
         <Container className={className}>
@@ -29,7 +57,7 @@ const Widget = ({
                 )}
             >
                 <HeaderText className={classNames.headerText}>
-                    Jetzt mieten statt kaufen
+                    {productName}
                 </HeaderText>
                 <Link
                     className={cn(
@@ -39,22 +67,22 @@ const Widget = ({
                     href={landingPageLink}
                     onClick={moreInformationCallback}
                 >
-                    more info
+                    More Info
                 </Link>
             </HeaderSection>
             <ProductPrice
                 className={cn(
                     'grover-widget__product-price',
-                    priceClassNames.priceContainer
+                    classNames.priceContainer
                 )}
                 classNames={priceClassNames}
-                priceInCents={19999}
-                oldPriceInCents={29999}
+                discountPriceInCents={productPrice.originalPriceInCents}
+                originalPriceInCents={productPrice.discountPriceInCents}
                 minimalPrice
             />
             <LinkButton
                 icon={GroverIcon}
-                className={buttonClassNames.button}
+                className={classNames.button}
                 classNames={buttonClassNames}
             >
                 Mieten mit Grover
@@ -63,40 +91,29 @@ const Widget = ({
     );
 };
 
-const priceClassNamesShape = {
-    price: PropTypes.string,
-    priceWithDiscount: PropTypes.shape({
-        container: PropTypes.string,
-        oldPrice: PropTypes.string,
-        priceWithDiscount: PropTypes.string,
-    }),
-};
-
-const priceClassNamesDefaultProps = {
-    priceContainer: null,
-    price: null,
-    priceWithDiscount: {
-        container: null,
-        oldPrice: null,
-        priceWithDiscount: null,
-    },
-};
-
 Widget.propTypes = {
     className: PropTypes.string,
     classNames: PropTypes.shape({
         headerSection: PropTypes.string,
         headerText: PropTypes.string,
         moreInfoLink: PropTypes.string,
-        priceClassNames: PropTypes.shape(priceClassNamesShape),
-        buttonClassNames: PropTypes.shape({
-            button: PropTypes.string,
-            icon: PropTypes.string,
-            text: PropTypes.string,
-        }),
+        priceContainer: PropTypes.string,
+        price: PropTypes.string,
+        discountPriceContainer: PropTypes.string,
+        discountPrice: PropTypes.string,
+        originalPrice: PropTypes.string,
+        button: PropTypes.string,
+        buttonIcon: PropTypes.string,
+        buttonText: PropTypes.string,
     }),
     landingPageLink: PropTypes.string.isRequired,
     moreInformationCallback: PropTypes.func,
+    productName: PropTypes.string.isRequired,
+    productPrice: PropTypes.shape({
+        originalPriceInCents: PropTypes.number.isRequired,
+        discountPriceInCents: PropTypes.number.isRequired,
+        minimalPrice: PropTypes.bool.isRequired,
+    }).isRequired,
 };
 
 Widget.defaultProps = {
@@ -105,12 +122,14 @@ Widget.defaultProps = {
         headerSection: null,
         headerText: null,
         moreInfoLink: null,
-        priceClassNames: priceClassNamesDefaultProps,
-        buttonClassNames: {
-            button: PropTypes.string,
-            icon: PropTypes.string,
-            text: PropTypes.string,
-        },
+        priceContainer: null,
+        price: null,
+        discountPriceContainer: null,
+        discountPrice: null,
+        originalPrice: null,
+        button: null,
+        buttonIcon: null,
+        buttonText: null,
     },
     moreInformationCallback: () => {},
 };

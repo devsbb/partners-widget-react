@@ -5,6 +5,6 @@
 @import '../components/link/styles.css';
 @import '../components/price/styles.css';
 @import '../components/priceText/styles.css';
-@import '../components/priceWithDiscount/styles.css';
+@import '../components/discountPrice/styles.css';
 @import '../components/productPrice/styles.css';
 @import '../components/widget/styles.css';

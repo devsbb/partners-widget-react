@@ -1,14 +1,14 @@
-.grover-price-with-discount {
+.grover-discount-price {
     margin: 0 9px;
 }
 
-.grover-price-with-discount__old-price {
+.grover-discount-price__original-price {
     font-size: 16px;
     line-height: 22px;
     text-decoration: line-through;
 }
 
-.grover-price-with-discount__price-with-discount {
+.grover-discount-price__discount-price {
     color: #FE1251;
     margin-left: 4px;
 }

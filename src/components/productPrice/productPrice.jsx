@@ -3,29 +3,32 @@ import PropTypes from 'prop-types';
 
 import PriceText from '../priceText';
 import Price from '../price';
-import PriceWithDiscount from '../priceWithDiscount';
+import DiscountPrice from '../discountPrice';
 
 const ProductPrice = ({
     className,
     classNames,
-    priceInCents,
-    oldPriceInCents,
+    discountPriceInCents,
+    originalPriceInCents,
     minimalPrice,
 }) => (
     <PriceText className={className}>
         {minimalPrice && 'ab'}
-        {oldPriceInCents ? (
-            <PriceWithDiscount
-                className={classNames.priceWithDiscount.container}
+        {discountPriceInCents ? (
+            <DiscountPrice
+                className={classNames.discountPriceContainer}
                 classNames={{
-                    priceWithDiscount:
-                        classNames.priceWithDiscount.priceWithDiscount,
+                    discountPrice: classNames.discountPrice,
+                    originalPrice: classNames.originalPrice,
                 }}
-                priceWithDiscountInCents={priceInCents}
-                oldPriceInCents={oldPriceInCents}
+                discountPriceInCents={discountPriceInCents}
+                originalPriceInCents={originalPriceInCents}
             />
         ) : (
-            <Price className={classNames.price} priceInCents={priceInCents} />
+            <Price
+                className={classNames.price}
+                priceInCents={originalPriceInCents}
+            />
         )}
         {'pro Monat'}
     </PriceText>
@@ -35,30 +38,26 @@ ProductPrice.propTypes = {
     className: PropTypes.string,
     classNames: PropTypes.shape({
         price: PropTypes.string,
-        priceWithDiscount: PropTypes.shape({
-            container: PropTypes.string,
-            oldPrice: PropTypes.string,
-            priceWithDiscount: PropTypes.string,
-        }),
+        discountPriceContainer: PropTypes.string,
+        discountPrice: PropTypes.string,
+        originalPrice: PropTypes.string,
     }),
     minimalPrice: PropTypes.bool,
-    priceInCents: PropTypes.number,
-    oldPriceInCents: PropTypes.number,
+    discountPriceInCents: PropTypes.number,
+    originalPriceInCents: PropTypes.number,
 };
 
 ProductPrice.defaultProps = {
     className: null,
     classNames: {
         price: null,
-        priceWithDiscount: {
-            container: null,
-            oldPrice: null,
-            priceWithDiscount: null,
-        },
+        discountPriceContainer: null,
+        discountPrice: null,
+        originalPrice: null,
     },
     minimalPrice: false,
-    priceInCents: 0,
-    oldPriceInCents: 0,
+    discountPriceInCents: 0,
+    originalPriceInCents: 0,
 };
 
 export default ProductPrice;
