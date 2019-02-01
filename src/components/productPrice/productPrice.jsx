@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 
 import PriceText from '../priceText';
 import Price from '../price';
@@ -16,7 +17,10 @@ const ProductPrice = ({
         {minimalPrice && 'ab'}
         {discountPriceInCents ? (
             <DiscountPrice
-                className={classNames.discountPriceContainer}
+                className={cn(
+                    'grover-product-price__price-container',
+                    classNames.discountPriceContainer
+                )}
                 classNames={{
                     discountPrice: classNames.discountPrice,
                     originalPrice: classNames.originalPrice,
@@ -26,7 +30,10 @@ const ProductPrice = ({
             />
         ) : (
             <Price
-                className={classNames.price}
+                className={cn(
+                    'grover-product-price__price-container',
+                    classNames.price
+                )}
                 priceInCents={originalPriceInCents}
             />
         )}
@@ -43,7 +50,7 @@ ProductPrice.propTypes = {
         originalPrice: PropTypes.string,
     }),
     minimalPrice: PropTypes.bool.isRequired,
-    discountPriceInCents: PropTypes.number.isRequired,
+    discountPriceInCents: PropTypes.number,
     originalPriceInCents: PropTypes.number.isRequired,
 };
 
@@ -55,6 +62,7 @@ ProductPrice.defaultProps = {
         discountPrice: null,
         originalPrice: null,
     },
+    discountPriceInCents: null,
 };
 
 export default ProductPrice;

@@ -6,9 +6,15 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    cursor: pointer;
 }
 
+.grover-button--disabled,
+.grover-button--disabled > * {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.grover-button,
 .grover-button > * {
     cursor: pointer;
 }

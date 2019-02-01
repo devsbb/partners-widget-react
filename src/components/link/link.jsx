@@ -2,11 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const Link = ({ className, children, href, onClick }) => (
+import { preventDefaultClickHandler } from '../../utils';
+
+const Link = ({ className, children, href, onClick, disabled, target }) => (
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <a
-        href={href}
-        onClick={onClick}
-        className={classNames('grover-link', className)}
+        href={disabled ? '' : href}
+        aria-disabled={disabled}
+        onClick={disabled ? preventDefaultClickHandler : onClick}
+        target={target}
+        className={classNames('grover-link', className, {
+            'grover-link--disabled': disabled,
+        })}
     >
         {children}
     </a>
@@ -17,12 +24,16 @@ Link.propTypes = {
     children: PropTypes.node.isRequired,
     href: PropTypes.string,
     onClick: PropTypes.func,
+    disabled: PropTypes.bool,
+    target: PropTypes.string,
 };
 
 Link.defaultProps = {
     className: null,
     href: '#',
     onClick: () => {},
+    disabled: PropTypes.bool,
+    target: null,
 };
 
 export default Link;

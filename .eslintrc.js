@@ -12,4 +12,8 @@ module.exports = {
             },
         ],
     },
+    globals: {
+        API_BASE_URL: true,
+        fetch: true,
+    },
 };

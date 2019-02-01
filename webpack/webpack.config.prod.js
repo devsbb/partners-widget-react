@@ -5,13 +5,18 @@ const postcssFlexbugsFixes = require('postcss-flexbugs-fixes');
 const postcssAutoreset = require('postcss-autoreset');
 const postcssInitial = require('postcss-initial');
 const postcssFontMagician = require('postcss-font-magician');
+const webpack = require('webpack');
 
 const paths = require('./paths');
+const variables = require('./variables');
 
 module.exports = {
     mode: 'production',
     entry: {
-        package: [require.resolve(path.join(paths.source, 'index.js'))],
+        package: [
+            'whatwg-fetch',
+            require.resolve(path.join(paths.source, 'index.js')),
+        ],
     },
     output: {
         filename: 'index.js',
@@ -77,7 +82,15 @@ module.exports = {
                                     flexbox: 'no-2009',
                                 }),
                                 postcssAutoreset({
-                                    rulesMatcher: 'bem',
+                                    /*
+                                        reset only simple class selectors
+                                        [see: https://github.com/maximkoretskiy/postcss-autoreset/issues/28]
+                                    */
+                                    rulesMatcher: rule =>
+                                        rule.selector.match(
+                                            // matches 'bem' notation, like .block-name__element-name--modifier-name
+                                            /^[.](\w|[-])+(__(\w|[-])+)*$/
+                                        ),
                                 }),
                                 postcssInitial,
                             ],
@@ -95,4 +108,5 @@ module.exports = {
             },
         ],
     },
+    plugins: [new webpack.DefinePlugin(variables.dev)],
 };

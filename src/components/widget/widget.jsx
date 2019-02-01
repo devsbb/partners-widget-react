@@ -39,17 +39,22 @@ function mapClassNamesToPriceClassNames(classNames = {}) {
 
 const Widget = ({
     className,
-    landingPageLink,
+    checkoutUrl,
     moreInformationCallback,
     classNames,
-    productName,
-    productPrice,
+    price,
+    unavailable,
 }) => {
     const priceClassNames = mapClassNamesToPriceClassNames(classNames);
     const buttonClassNames = mapClassNamesToButtonClassNames(classNames);
 
     return (
-        <Container className={className}>
+        <Container
+            ariaDisabled={unavailable}
+            className={cn(className, {
+                'grover-widget--unavailable': unavailable,
+            })}
+        >
             <HeaderSection
                 className={cn(
                     'grover-widget__header-section',
@@ -57,7 +62,7 @@ const Widget = ({
                 )}
             >
                 <HeaderText className={classNames.headerText}>
-                    {productName}
+                    Jetzt mieten statt kaufen
                 </HeaderText>
 
                 <Link
@@ -66,10 +71,11 @@ const Widget = ({
                         classNames.moreInfoLink
                     )}
                     target="_blank"
-                    href={landingPageLink}
+                    href={checkoutUrl}
+                    disabled={unavailable}
                     onClick={moreInformationCallback}
                 >
-                    More Info
+                    Mehr Infos
                 </Link>
             </HeaderSection>
 
@@ -79,15 +85,16 @@ const Widget = ({
                     classNames.priceContainer
                 )}
                 classNames={priceClassNames}
-                discountPriceInCents={productPrice.originalPriceInCents}
-                originalPriceInCents={productPrice.discountPriceInCents}
+                originalPriceInCents={price.originalPriceInCents}
+                discountPriceInCents={price.discountPriceInCents}
                 minimalPrice
             />
 
             <LinkButton
                 icon={GroverIcon}
-                href={landingPageLink}
+                href={checkoutUrl}
                 target="_blank"
+                disabled={unavailable}
                 className={classNames.button}
                 classNames={buttonClassNames}
             >
@@ -112,14 +119,14 @@ Widget.propTypes = {
         buttonIcon: PropTypes.string,
         buttonText: PropTypes.string,
     }),
-    landingPageLink: PropTypes.string.isRequired,
+    checkoutUrl: PropTypes.string.isRequired,
     moreInformationCallback: PropTypes.func,
-    productName: PropTypes.string.isRequired,
-    productPrice: PropTypes.shape({
+    price: PropTypes.shape({
         originalPriceInCents: PropTypes.number.isRequired,
-        discountPriceInCents: PropTypes.number.isRequired,
+        discountPriceInCents: PropTypes.number,
         minimalPrice: PropTypes.bool.isRequired,
     }).isRequired,
+    unavailable: PropTypes.bool,
 };
 
 Widget.defaultProps = {
@@ -138,6 +145,7 @@ Widget.defaultProps = {
         buttonText: null,
     },
     moreInformationCallback: () => {},
+    unavailable: false,
 };
 
 export default Widget;

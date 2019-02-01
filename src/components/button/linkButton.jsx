@@ -4,6 +4,8 @@ import cn from 'classnames';
 
 import ButtonText from '../buttonText';
 
+import { preventDefaultClickHandler } from '../../utils';
+
 const LinkButton = ({
     className,
     classNames,
@@ -11,8 +13,18 @@ const LinkButton = ({
     icon: Icon,
     href,
     target,
+    disabled,
 }) => (
-    <a href={href} target={target} className={cn('grover-button', className)}>
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+    <a
+        href={disabled ? '' : href}
+        onClick={disabled ? preventDefaultClickHandler : null}
+        target={target}
+        aria-disabled={disabled}
+        className={cn('grover-button', className, {
+            'grover-button--disabled': disabled,
+        })}
+    >
         {Icon && (
             <Icon className={cn('grover-button__icon', classNames.icon)} />
         )}
@@ -30,6 +42,7 @@ LinkButton.propTypes = {
     icon: PropTypes.element,
     href: PropTypes.string.isRequired,
     target: PropTypes.string,
+    disabled: PropTypes.string,
 };
 
 LinkButton.defaultProps = {
@@ -40,6 +53,7 @@ LinkButton.defaultProps = {
     },
     icon: null,
     target: null,
+    disabled: false,
 };
 
 export default LinkButton;

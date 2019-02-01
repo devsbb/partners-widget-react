@@ -4,11 +4,21 @@ import cn from 'classnames';
 
 import ButtonText from '../buttonText';
 
-const Button = ({ className, classNames, children, icon: Icon, onClick }) => (
+const Button = ({
+    className,
+    classNames,
+    children,
+    icon: Icon,
+    onClick,
+    disabled,
+}) => (
     <button
+        disabled={disabled}
         onClick={onClick}
         type="button"
-        className={cn('grover-button', className)}
+        className={cn('grover-button', className, {
+            'grover-button--disabled': disabled,
+        })}
     >
         {Icon && (
             <Icon className={cn('grover-button__icon', classNames.icon)} />
@@ -26,6 +36,7 @@ Button.propTypes = {
     children: PropTypes.node.isRequired,
     icon: PropTypes.element,
     onClick: PropTypes.func,
+    disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -36,6 +47,7 @@ Button.defaultProps = {
     },
     icon: null,
     onClick: () => {},
+    disabled: false,
 };
 
 export default Button;

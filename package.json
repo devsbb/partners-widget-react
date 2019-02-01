@@ -9,7 +9,7 @@
   "scripts": {
     "start": "yarn run storybook",
     "clearBuild": "[ -d lib ] && rm -r ./lib || true",
-    "build": "yarn run clearBuild && yarn run webpack --config ./webpack/webpack.config.prod.js",
+    "build": "yarn run clearBuild && yarn run webpack -config ./webpack/webpack.config.prod.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "lint": "yarn run eslint ./"
@@ -53,7 +53,10 @@
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "query-string": "^6.2.0",
+    "whatwg-fetch": "^3.0.0"
+  },
   "peerDependencies": {
     "classnames": "^2.2.6",
     "prop-types": "^15.6.2",
