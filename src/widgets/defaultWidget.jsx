@@ -14,6 +14,8 @@ class DefaultWidget extends Component {
     constructor(props) {
         super(props);
 
+        this.handleError = this.handleError.bind(this);
+
         this.state = {
             widgetState: WidgetStatesEnum.hidden,
             checkoutUrl: '',
@@ -30,24 +32,39 @@ class DefaultWidget extends Component {
 
         productService
             .getProduct(accessToken, articleId, stock)
-            .then(apiProduct => {
-                const cheapestPlan = apiProduct.rental_plans.find(
-                    plan => plan.is_cheapest
-                );
+            .then(product => {
+                const {
+                    cheapestPlan,
+                    rentalPlans,
+                    checkoutUrl,
+                    widgetState,
+                } = product;
 
-                const { price, promotion_price: promotionPrice } = cheapestPlan;
+                const { price } = cheapestPlan;
 
                 this.setState({
                     price: {
-                        originalPriceInCents: price.cents,
-                        discountPriceInCents:
-                            promotionPrice && promotionPrice.cents,
-                        minimalPrice: apiProduct.rental_plans.length > 0,
+                        ...price,
+                        minimalPrice: rentalPlans.length > 0,
                     },
-                    checkoutUrl: apiProduct.checkout_url,
-                    widgetState: apiProduct.state,
+                    checkoutUrl,
+                    // TODO Remove `WidgetStatesEnum.available` when API will be done
+                    widgetState: widgetState || WidgetStatesEnum.available,
                 });
-            });
+            })
+            .catch(this.handleError);
+    }
+
+    handleError(error) {
+        const { onError } = this.props;
+
+        this.setState({
+            widgetState: WidgetStatesEnum.hidden,
+        });
+
+        if (typeof onError === 'function') {
+            onError(error);
+        }
     }
 
     render() {
@@ -79,6 +96,11 @@ DefaultWidget.propTypes = {
         ]),
         PropTypes.number,
     ]).isRequired,
+    onError: PropTypes.func,
+};
+
+DefaultWidget.defaultProps = {
+    onError: () => {},
 };
 
 export default DefaultWidget;

@@ -1,6 +1,6 @@
 import fetchJSON from '../../utils/request';
 
-import { StockValuesEnum } from '../../utils';
+import { StockValuesEnum, WidgetStatesEnum, mapApiProduct } from '../../utils';
 
 function validateGetProduct(accessToken, articleId, stock) {
     if (!accessToken) {
@@ -30,6 +30,7 @@ function handleError(error) {
         throw error;
     }
 
+    // eslint-disable-next-line no-console
     console.error(
         `Grover API responded with ${response.status} status: ${
             response.statusText
@@ -38,15 +39,13 @@ function handleError(error) {
 
     return {
         checkout_url: '',
-        state: 'hidden',
+        state: WidgetStatesEnum.hidden,
         rental_plans: [],
     };
 }
 
-function handleResponse(response) {
-    const { body } = response;
-
-    return body;
+function handleResponse({ body }) {
+    return mapApiProduct(body);
 }
 
 function getProduct(accessToken, articleId, stock) {
@@ -63,6 +62,7 @@ function getProduct(accessToken, articleId, stock) {
     }
 
     const promise = fetchJSON(`/partners/products/${articleId}`, {
+        method: 'GET',
         query: queryParams,
     })
         .then(handleResponse)

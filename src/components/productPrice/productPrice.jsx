@@ -14,7 +14,11 @@ const ProductPrice = ({
     minimalPrice,
 }) => (
     <PriceText className={className}>
-        {minimalPrice && 'ab'}
+        {minimalPrice && (
+            <span className="grover-product-price__starting-price-text">
+                ab
+            </span>
+        )}
         {discountPriceInCents ? (
             <DiscountPrice
                 className={cn(
@@ -37,7 +41,9 @@ const ProductPrice = ({
                 priceInCents={originalPriceInCents}
             />
         )}
-        {'pro Monat'}
+        <span className="grover-product-price__periodicity-text">
+            pro Monat
+        </span>
     </PriceText>
 );
 

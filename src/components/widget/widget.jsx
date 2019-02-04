@@ -87,7 +87,7 @@ const Widget = ({
                 classNames={priceClassNames}
                 originalPriceInCents={price.originalPriceInCents}
                 discountPriceInCents={price.discountPriceInCents}
-                minimalPrice
+                minimalPrice={price.minimalPrice}
             />
 
             <LinkButton
@@ -98,7 +98,9 @@ const Widget = ({
                 className={classNames.button}
                 classNames={buttonClassNames}
             >
-                Mieten mit Grover
+                {unavailable
+                    ? 'Currently unavailable on Grover'
+                    : 'Mieten mit Grover'}
             </LinkButton>
         </Container>
     );

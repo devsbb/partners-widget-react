@@ -13,7 +13,7 @@ export default function init() {
                 price={{
                     originalPriceInCents: 5299,
                     discountPriceInCents: 4890,
-                    minimalPrice: true,
+                    minimalPrice: false,
                 }}
                 checkoutUrl="https://getgrover.com"
             />
@@ -28,7 +28,7 @@ export default function init() {
                 checkoutUrl="https://getgrover.com"
             />
         ))
-        .add('Widget with discount', () => (
+        .add('Widget with discount and minimal price', () => (
             <Widget
                 productName="Jetzt mieten statt kaufen"
                 price={{
@@ -45,7 +45,7 @@ export default function init() {
                 price={{
                     originalPriceInCents: 5299,
                     discountPriceInCents: 4890,
-                    minimalPrice: true,
+                    minimalPrice: false,
                 }}
                 checkoutUrl="https://getgrover.com"
                 unavailable
