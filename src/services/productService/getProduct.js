@@ -13,12 +13,12 @@ function validateGetProduct(accessToken, articleId, stock) {
 
     if (
         typeof stock !== 'number' &&
-        Boolean(!StockValuesEnum.keys().find(s => stock === s))
+        Boolean(!Object.keys(StockValuesEnum).find(s => stock === s))
     ) {
         throw new Error(
-            `stock is required to be number either one of ${StockValuesEnum.keys().join(
-                ' ,'
-            )}`
+            `stock is required to be number either one of ${Object.keys(
+                StockValuesEnum
+            ).join(' ,')}`
         );
     }
 }
@@ -26,7 +26,7 @@ function validateGetProduct(accessToken, articleId, stock) {
 function handleError(error) {
     const { response } = error;
 
-    if (!error.response) {
+    if (!response) {
         throw error;
     }
 
@@ -52,7 +52,9 @@ function handleResponse(response) {
 function getProduct(accessToken, articleId, stock) {
     validateGetProduct(accessToken, articleId, stock);
 
-    const queryParams = {};
+    const queryParams = {
+        accessToken,
+    };
 
     if (typeof stock === 'number') {
         queryParams.stockAbsolute = stock;

@@ -102,5 +102,5 @@ module.exports = {
             },
         ],
     },
-    plugins: [new webpack.DefinePlugin(variables.production)],
+    plugins: [new webpack.DefinePlugin(variables.dev)],
 };

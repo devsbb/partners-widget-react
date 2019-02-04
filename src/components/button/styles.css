@@ -8,12 +8,6 @@
     width: 100%;
 }
 
-.grover-button--disabled,
-.grover-button--disabled > * {
-    cursor: not-allowed;
-    pointer-events: none;
-}
-
 .grover-button,
 .grover-button > * {
     cursor: pointer;
@@ -21,4 +15,10 @@
 
 .grover-button__icon {
     margin-right: 16px;
+}
+
+.grover-button--disabled,
+.grover-button--disabled > * {
+    cursor: not-allowed;
+    pointer-events: none;
 }

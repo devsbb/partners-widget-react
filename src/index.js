@@ -1,3 +1,3 @@
-import { Widget } from './components';
+import DefaultWidget from './widgets';
 
-export default Widget;
+export default DefaultWidget;

@@ -14,10 +14,7 @@ function checkStatus(response) {
 }
 
 function parseBody(response) {
-    return {
-        ...response,
-        body: response.json(),
-    };
+    return response.json();
 }
 
 /**
@@ -28,9 +25,9 @@ function parseBody(response) {
  * @param {string} relativePath
  * @param {object} options
  */
-const fetchJSON = (relativePath, options) => {
+const fetchJSON = (relativePath, options = {}) => {
     const { query = {}, ...restOptions } = options;
-    const stringifiedQuery = query.keys.length
+    const stringifiedQuery = Object.keys(query).length
         ? `?${queryString.stringify(query)}`
         : '';
 

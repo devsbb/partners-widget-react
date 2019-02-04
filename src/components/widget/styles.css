@@ -10,9 +10,5 @@
 }
 
 .grover-widget--unavailable {
-    opacity: 0.9;
-}
-
-.grover-widget--unavailable > * {
-    cursor: default;
+    opacity: 0.5;
 }
