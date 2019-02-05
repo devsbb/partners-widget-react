@@ -1,0 +1,14 @@
+.grover-product-price__price-container {
+}
+
+.grover-product-price__starting-price-text {
+    all: inherit;
+    display: inline;
+    margin-right: 9px;
+}
+
+.grover-product-price__periodicity-text {
+    all: inherit;
+    display: inline;
+    margin-left: 9px;
+}

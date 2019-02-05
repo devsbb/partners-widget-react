@@ -1,0 +1,8 @@
+{
+    "linters": {
+        "(src|stories)/**/*.{js,jsx,json}": [
+            "yarn run lint",
+            "git add"
+        ]
+    }
+}

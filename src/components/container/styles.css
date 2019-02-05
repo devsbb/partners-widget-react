@@ -1,0 +1,10 @@
+.grover-container {
+    background-color: #f1f1f1;
+    padding: 16px;
+    border-radius: 8px;
+    min-width: 400px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: flex-start;
+}

@@ -1,8 +1,6 @@
-.vscode
-config/*
-dist/*
-lib/*
-node_modules/*
-public/*
-tmp/*
-server-dist/*
+**/.vscode
+**/lib/*
+**/static/*
+**/node_modules/*
+
+**/src/**/*.(css|scss)
