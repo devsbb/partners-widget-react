@@ -10,6 +10,7 @@ import DiscountPrice from './discountPrice';
 import ProductPrice from './productPrice';
 import Link from './link';
 import Widget from './widget';
+import LocaleContext from './localeContext';
 
 export {
     Button,
@@ -23,4 +24,5 @@ export {
     DiscountPrice,
     ProductPrice,
     Link,
+    LocaleContext,
 };

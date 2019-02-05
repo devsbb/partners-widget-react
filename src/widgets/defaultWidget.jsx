@@ -8,7 +8,7 @@ import { Widget } from '../components';
 import { productService } from '../services';
 
 // Utils
-import { WidgetStatesEnum, StockValuesEnum } from '../utils';
+import { WidgetStatesEnum, StockValuesEnum, handleGlobalError } from '../utils';
 
 class DefaultWidget extends Component {
     constructor(props) {
@@ -56,19 +56,17 @@ class DefaultWidget extends Component {
     }
 
     handleError(error) {
-        const { onError } = this.props;
-
         this.setState({
             widgetState: WidgetStatesEnum.hidden,
         });
 
-        if (typeof onError === 'function') {
-            onError(error);
-        }
+        handleGlobalError(error);
     }
 
     render() {
+        const { moreInformationCallback } = this.props;
         const { widgetState, checkoutUrl, price } = this.state;
+
         if (widgetState === WidgetStatesEnum.hidden) {
             return null;
         }
@@ -80,6 +78,7 @@ class DefaultWidget extends Component {
                 price={price}
                 checkoutUrl={checkoutUrl}
                 unavailable={isUnavailable}
+                moreInformationCallback={moreInformationCallback}
             />
         );
     }
@@ -96,11 +95,11 @@ DefaultWidget.propTypes = {
         ]),
         PropTypes.number,
     ]).isRequired,
-    onError: PropTypes.func,
+    moreInformationCallback: PropTypes.func,
 };
 
 DefaultWidget.defaultProps = {
-    onError: () => {},
+    moreInformationCallback: null,
 };
 
 export default DefaultWidget;

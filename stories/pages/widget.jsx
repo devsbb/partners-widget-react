@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import { Widget } from '../../src/components';
 import DefaultWidget from '../../src';
@@ -56,6 +57,9 @@ export default function init() {
                 accessToken="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdG9yZV9jb2RlIjoibWVkaWFtYXJrdCJ9.bm1niEepZwp2PgvNj9PGxyIpYD0MRF6X1SOOS5ehDxY"
                 articleId="123123123"
                 stock={100}
+                moreInformationCallback={action(
+                    'moreInformationCallback is called'
+                )}
             />
         ));
 }

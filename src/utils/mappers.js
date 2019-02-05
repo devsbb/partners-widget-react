@@ -21,7 +21,7 @@ export function mapApiRentalPlan(apiRentalPlan) {
 }
 
 export function mapApiProduct(apiProduct) {
-    const rentalPlans = apiProduct.rentalPlans.map(mapApiRentalPlan);
+    const rentalPlans = apiProduct.rental_plans.map(mapApiRentalPlan);
     const cheapestPlan = rentalPlans.find(plan => plan.cheapest);
 
     return {

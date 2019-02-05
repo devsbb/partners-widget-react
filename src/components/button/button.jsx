@@ -4,6 +4,8 @@ import cn from 'classnames';
 
 import ButtonText from '../buttonText';
 
+import { preventDefaultClickHandler } from '../../utils';
+
 const Button = ({
     className,
     classNames,
@@ -14,7 +16,7 @@ const Button = ({
 }) => (
     <button
         disabled={disabled}
-        onClick={onClick}
+        onClick={disabled ? preventDefaultClickHandler : onClick}
         type="button"
         className={cn('grover-button', className, {
             'grover-button--disabled': disabled,
@@ -34,7 +36,7 @@ Button.propTypes = {
         text: PropTypes.string,
     }),
     children: PropTypes.node.isRequired,
-    icon: PropTypes.element,
+    icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
     onClick: PropTypes.func,
     disabled: PropTypes.bool,
 };

@@ -39,10 +39,10 @@ LinkButton.propTypes = {
         text: PropTypes.string,
     }),
     children: PropTypes.node.isRequired,
-    icon: PropTypes.element,
+    icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
     href: PropTypes.string.isRequired,
     target: PropTypes.string,
-    disabled: PropTypes.string,
+    disabled: PropTypes.bool,
 };
 
 LinkButton.defaultProps = {

@@ -5,6 +5,7 @@ import cn from 'classnames';
 import PriceText from '../priceText';
 import Price from '../price';
 import DiscountPrice from '../discountPrice';
+import FormattedMessage from '../formattedMessage';
 
 const ProductPrice = ({
     className,
@@ -16,7 +17,7 @@ const ProductPrice = ({
     <PriceText className={className}>
         {minimalPrice && (
             <span className="grover-product-price__starting-price-text">
-                ab
+                <FormattedMessage translationKey="STARTING_PRICE" />
             </span>
         )}
         {discountPriceInCents ? (
@@ -42,7 +43,7 @@ const ProductPrice = ({
             />
         )}
         <span className="grover-product-price__periodicity-text">
-            pro Monat
+            <FormattedMessage translationKey="PERIODICITY" />
         </span>
     </PriceText>
 );
