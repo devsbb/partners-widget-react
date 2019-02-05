@@ -9,7 +9,7 @@
   "scripts": {
     "start": "yarn run storybook",
     "clearBuild": "[ -d lib ] && rm -r ./lib || true",
-    "build": "yarn run clearBuild && yarn run webpack -config ./webpack/webpack.config.prod.js",
+    "build": "yarn run clearBuild && yarn run webpack --config ./webpack/webpack.config.prod.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "lint": "yarn run eslint ./"
