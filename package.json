@@ -4,11 +4,11 @@
   "description": "Grover partner widget",
   "author": "Konstantin Chukharev <konstantinchukharev@getgrover.com>",
   "license": "MIT",
-  "main": "lib/index.js",
+  "main": "build/index.js",
   "private": true,
   "scripts": {
     "start": "yarn run storybook",
-    "clearBuild": "[ -d lib ] && rm -r ./lib || true",
+    "clearBuild": "[ -d build ] && rm -r ./build || true",
     "build": "yarn run clearBuild && yarn run webpack --config ./webpack/webpack.config.prod.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
