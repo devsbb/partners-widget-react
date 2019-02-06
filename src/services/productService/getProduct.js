@@ -1,6 +1,6 @@
 import fetchJSON from '../../utils/request';
 
-import { StockValuesEnum, WidgetStatesEnum, mapApiProduct } from '../../utils';
+import { StockLevelEnum, WidgetStatesEnum, mapApiProduct } from '../../utils';
 
 function validateGetProduct(payload) {
     const { accessToken, articleId, stock } = payload;
@@ -15,11 +15,11 @@ function validateGetProduct(payload) {
 
     if (
         typeof stock !== 'number' &&
-        Boolean(!Object.keys(StockValuesEnum).find(s => stock === s))
+        Boolean(!Object.keys(StockLevelEnum).find(s => stock === s))
     ) {
         throw new Error(
             `stock is required to be number either one of ${Object.keys(
-                StockValuesEnum
+                StockLevelEnum
             ).join(' ,')}`
         );
     }

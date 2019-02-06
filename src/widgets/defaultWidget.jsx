@@ -8,7 +8,7 @@ import { Widget } from '../components';
 import { productService } from '../services';
 
 // Utils
-import { WidgetStatesEnum, StockValuesEnum, handleGlobalError } from '../utils';
+import { WidgetStatesEnum, StockLevelEnum, handleGlobalError } from '../utils';
 
 class DefaultWidget extends Component {
     constructor(props) {
@@ -102,9 +102,9 @@ DefaultWidget.propTypes = {
     accessToken: PropTypes.string.isRequired,
     stock: PropTypes.oneOfType([
         PropTypes.oneOf([
-            StockValuesEnum.low,
-            StockValuesEnum.medium,
-            StockValuesEnum.none,
+            StockLevelEnum.low,
+            StockLevelEnum.medium,
+            StockLevelEnum.none,
         ]),
         PropTypes.number,
     ]).isRequired,
