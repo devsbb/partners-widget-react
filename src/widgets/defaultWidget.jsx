@@ -48,8 +48,7 @@ class DefaultWidget extends Component {
                         minimalPrice: rentalPlans.length > 0,
                     },
                     checkoutUrl,
-                    // TODO Remove `WidgetStatesEnum.available` when API will be done
-                    widgetState: widgetState || WidgetStatesEnum.available,
+                    widgetState,
                 });
             })
             .catch(this.handleError);

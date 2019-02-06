@@ -37,11 +37,11 @@ function handleError(error) {
         }`
     );
 
-    return {
+    return mapApiProduct({
         checkout_url: '',
         state: WidgetStatesEnum.hidden,
         rental_plans: [],
-    };
+    });
 }
 
 function handleResponse({ body }) {
