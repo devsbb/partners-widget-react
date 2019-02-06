@@ -67,12 +67,12 @@
   "peerDependencies": {
     "classnames": "^2.2.6",
     "prop-types": "^15.6.2",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/konstantin-chukharev/partners-widget-react.git"
+    "url": "https://github.com/devsbb/partners-widget-react.git"
   },
   "publishConfig": {
     "access": "restricted"

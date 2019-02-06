@@ -11,6 +11,7 @@ import ProductPrice from './productPrice';
 import Link from './link';
 import Widget from './widget';
 import LocaleContext from './localeContext';
+import ProductFetcher from './productFetcher';
 
 export {
     Button,
@@ -25,4 +26,5 @@ export {
     ProductPrice,
     Link,
     LocaleContext,
+    ProductFetcher,
 };

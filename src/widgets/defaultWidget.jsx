@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import { Widget } from '../components';
-
-// Services
-import { productService } from '../services';
+import { Widget, ProductFetcher } from '../components';
 
 // Utils
-import { WidgetStatesEnum, StockLevelEnum, handleGlobalError } from '../utils';
+import { WidgetStatesEnum, handleGlobalError, requireOneOf } from '../utils';
 
 class DefaultWidget extends Component {
     constructor(props) {
@@ -17,82 +14,61 @@ class DefaultWidget extends Component {
         this.handleError = this.handleError.bind(this);
 
         this.state = {
-            widgetState: WidgetStatesEnum.hidden,
-            checkoutUrl: '',
-            price: {
-                originalPriceInCents: 0,
-                discountPriceInCents: 0,
-                minimalPrice: false,
-            },
+            hasError: false,
         };
     }
 
-    componentDidMount() {
-        const {
-            articleId,
-            accessToken,
-            stock,
-            eans,
-            deliveryDate,
-            deliveryTime,
-        } = this.props;
-
-        productService
-            .getProduct({
-                accessToken,
-                articleId,
-                stock,
-                eans,
-                deliveryDate,
-                deliveryTime,
-            })
-            .then(product => {
-                const {
-                    cheapestPlan,
-                    rentalPlans,
-                    checkoutUrl,
-                    widgetState,
-                } = product;
-
-                const { price } = cheapestPlan;
-
-                this.setState({
-                    price: {
-                        ...price,
-                        minimalPrice: rentalPlans.length > 0,
-                    },
-                    checkoutUrl,
-                    widgetState,
-                });
-            })
-            .catch(this.handleError);
+    componentDidCatch(error) {
+        this.handleError(error);
     }
 
     handleError(error) {
         this.setState({
-            widgetState: WidgetStatesEnum.hidden,
+            hasError: true,
         });
 
         handleGlobalError(error);
     }
 
     render() {
-        const { moreInformationCallback } = this.props;
-        const { widgetState, checkoutUrl, price } = this.state;
+        const {
+            moreInformationCallback,
+            articleId,
+            accessToken,
+            stockEnumerated,
+            stockAbsolute,
+            eans,
+            deliveryDate,
+            deliveryTime,
+        } = this.props;
 
-        if (widgetState === WidgetStatesEnum.hidden) {
+        const { hasError } = this.state;
+
+        if (hasError) {
             return null;
         }
 
-        const isUnavailable = widgetState === WidgetStatesEnum.unavailable;
-
         return (
-            <Widget
-                price={price}
-                checkoutUrl={checkoutUrl}
-                unavailable={isUnavailable}
-                moreInformationCallback={moreInformationCallback}
-            />
+            <ProductFetcher
+                articleId={articleId}
+                accessToken={accessToken}
+                stockEnumerated={stockEnumerated}
+                stockAbsolute={stockAbsolute}
+                eans={eans}
+                deliveryDate={deliveryDate}
+                deliveryTime={deliveryTime}
+            >
+                {({ price, checkoutUrl, widgetState }) => (
+                    <Widget
+                        price={price}
+                        checkoutUrl={checkoutUrl}
+                        unavailable={
+                            widgetState === WidgetStatesEnum.unavailable
+                        }
+                        moreInformationCallback={moreInformationCallback}
+                    />
+                )}
+            </ProductFetcher>
         );
     }
 }
@@ -100,14 +76,14 @@ class DefaultWidget extends Component {
 DefaultWidget.propTypes = {
     articleId: PropTypes.string.isRequired,
     accessToken: PropTypes.string.isRequired,
-    stock: PropTypes.oneOfType([
-        PropTypes.oneOf([
-            StockLevelEnum.low,
-            StockLevelEnum.medium,
-            StockLevelEnum.none,
+    stockEnumerated: requireOneOf({
+        stockEnumerated: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
         ]),
-        PropTypes.number,
-    ]).isRequired,
+        stockAbsolute: PropTypes.string,
+    }),
+    stockAbsolute: PropTypes.string,
     moreInformationCallback: PropTypes.func,
     eans: PropTypes.arrayOf(PropTypes.string),
     deliveryDate: PropTypes.string,
@@ -119,6 +95,8 @@ DefaultWidget.defaultProps = {
     eans: [],
     deliveryTime: null,
     deliveryDate: null,
+    stockEnumerated: null,
+    stockAbsolute: null,
 };
 
 export default DefaultWidget;

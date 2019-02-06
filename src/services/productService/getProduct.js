@@ -1,9 +1,9 @@
 import fetchJSON from '../../utils/request';
 
-import { StockLevelEnum, WidgetStatesEnum, mapApiProduct } from '../../utils';
+import { WidgetStatesEnum, mapApiProduct } from '../../utils';
 
 function validateGetProduct(payload) {
-    const { accessToken, articleId, stock } = payload;
+    const { accessToken, articleId, stockEnumerated, stockAbsolute } = payload;
 
     if (!accessToken) {
         throw new Error(`accessToken is required for fetching a product`);
@@ -13,14 +13,9 @@ function validateGetProduct(payload) {
         throw new Error(`article is required for fetching a product`);
     }
 
-    if (
-        typeof stock !== 'number' &&
-        Boolean(!Object.keys(StockLevelEnum).find(s => stock === s))
-    ) {
+    if (!stockEnumerated && !stockAbsolute) {
         throw new Error(
-            `stock is required to be number either one of ${Object.keys(
-                StockLevelEnum
-            ).join(' ,')}`
+            `stockEnumerated or stockAbsolute is required for fetching a product`
         );
     }
 }
@@ -56,10 +51,11 @@ function getProduct(payload) {
     const {
         accessToken,
         articleId,
-        stock,
         eans,
         deliveryDate,
         deliveryTime,
+        stockEnumerated,
+        stockAbsolute,
     } = payload;
 
     const queryParams = {
@@ -67,10 +63,10 @@ function getProduct(payload) {
         eans,
     };
 
-    if (typeof stock === 'number') {
-        queryParams.stockAbsolute = stock;
-    } else {
-        queryParams.stockEnumerated = stock;
+    if (stockAbsolute) {
+        queryParams.stockAbsolute = stockAbsolute;
+    } else if (stockEnumerated) {
+        queryParams.stockEnumerated = stockEnumerated;
     }
 
     if (deliveryDate) {
