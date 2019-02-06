@@ -183,7 +183,7 @@ Widget.defaultProps = {
     },
     moreInformationCallback: null,
     unavailable: false,
-    locale: SupportedLocalesEnum.en,
+    locale: SupportedLocalesEnum.de,
 };
 
 export default Widget;

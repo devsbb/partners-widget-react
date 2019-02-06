@@ -6,6 +6,7 @@ import { Widget, ProductFetcher } from '../components';
 
 // Utils
 import { WidgetStatesEnum, handleGlobalError, requireOneOf } from '../utils';
+import { SupportedLocalesEnum } from '../translations';
 
 class DefaultWidget extends Component {
     constructor(props) {
@@ -40,6 +41,9 @@ class DefaultWidget extends Component {
             eans,
             deliveryDate,
             deliveryTime,
+            locale,
+            className,
+            classNames,
         } = this.props;
 
         const { hasError } = this.state;
@@ -60,6 +64,9 @@ class DefaultWidget extends Component {
             >
                 {({ price, checkoutUrl, widgetState }) => (
                     <Widget
+                        className={className}
+                        classNames={classNames}
+                        locale={locale}
                         price={price}
                         checkoutUrl={checkoutUrl}
                         unavailable={
@@ -88,6 +95,21 @@ DefaultWidget.propTypes = {
     eans: PropTypes.arrayOf(PropTypes.string),
     deliveryDate: PropTypes.string,
     deliveryTime: PropTypes.string,
+    locale: PropTypes.oneOf(Object.keys(SupportedLocalesEnum)),
+    className: PropTypes.string,
+    classNames: PropTypes.shape({
+        headerSection: PropTypes.string,
+        headerText: PropTypes.string,
+        moreInfoLink: PropTypes.string,
+        priceContainer: PropTypes.string,
+        price: PropTypes.string,
+        discountPriceContainer: PropTypes.string,
+        discountPrice: PropTypes.string,
+        originalPrice: PropTypes.string,
+        button: PropTypes.string,
+        buttonIcon: PropTypes.string,
+        buttonText: PropTypes.string,
+    }),
 };
 
 DefaultWidget.defaultProps = {
@@ -97,6 +119,21 @@ DefaultWidget.defaultProps = {
     deliveryDate: null,
     stockEnumerated: null,
     stockAbsolute: null,
+    locale: SupportedLocalesEnum.de,
+    className: null,
+    classNames: {
+        headerSection: null,
+        headerText: null,
+        moreInfoLink: null,
+        priceContainer: null,
+        price: null,
+        discountPriceContainer: null,
+        discountPrice: null,
+        originalPrice: null,
+        button: null,
+        buttonIcon: null,
+        buttonText: null,
+    },
 };
 
 export default DefaultWidget;
