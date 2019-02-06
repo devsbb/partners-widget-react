@@ -1,6 +1,6 @@
 import DefaultWidget from './widgets';
 
-import { StockLevelEnum } from './utils';
+import { StockLevelEnum as STOCK_LEVEL_ENUM } from './utils';
 
 export default DefaultWidget;
-export { StockLevelEnum };
+export { STOCK_LEVEL_ENUM };
