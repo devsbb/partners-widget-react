@@ -28,10 +28,24 @@ class DefaultWidget extends Component {
     }
 
     componentDidMount() {
-        const { articleId, accessToken, stock } = this.props;
+        const {
+            articleId,
+            accessToken,
+            stock,
+            eans,
+            deliveryDate,
+            deliveryTime,
+        } = this.props;
 
         productService
-            .getProduct(accessToken, articleId, stock)
+            .getProduct({
+                accessToken,
+                articleId,
+                stock,
+                eans,
+                deliveryDate,
+                deliveryTime,
+            })
             .then(product => {
                 const {
                     cheapestPlan,
@@ -95,10 +109,16 @@ DefaultWidget.propTypes = {
         PropTypes.number,
     ]).isRequired,
     moreInformationCallback: PropTypes.func,
+    eans: PropTypes.arrayOf(PropTypes.string),
+    deliveryDate: PropTypes.string,
+    deliveryTime: PropTypes.string,
 };
 
 DefaultWidget.defaultProps = {
     moreInformationCallback: null,
+    eans: [],
+    deliveryTime: null,
+    deliveryDate: null,
 };
 
 export default DefaultWidget;

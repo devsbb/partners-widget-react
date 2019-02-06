@@ -1,18 +1,23 @@
 {
-  "name": "grover-partner-widget",
-  "version": "1.0.0",
+  "name": "@getgrover/partners-widget-react",
+  "version": "0.0.0-development",
   "description": "Grover partner widget",
   "author": "Konstantin Chukharev <konstantinchukharev@getgrover.com>",
   "license": "MIT",
   "main": "build/index.js",
+  "directories": {
+    "build": true
+  },
   "private": true,
   "scripts": {
     "start": "yarn run storybook",
+    "test": "echo NOTE: tests are not set up",
     "clearBuild": "[ -d build ] && rm -r ./build || true",
     "build": "yarn run clearBuild && yarn run webpack --config ./webpack/webpack.config.prod.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "lint": "yarn run eslint ./"
+    "lint": "yarn run eslint ./",
+    "semantic-release": "semantic-release"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -49,6 +54,8 @@
     "precss": "^4.0.0",
     "prettier": "^1.16.1",
     "react-hot-loader": "^4.6.3",
+    "semantic-release": "^15.13.3",
+    "semantic-release-cli": "^4.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1"
@@ -60,7 +67,14 @@
   "peerDependencies": {
     "classnames": "^2.2.6",
     "prop-types": "^15.6.2",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/konstantin-chukharev/partners-widget-react.git"
+  },
+  "publishConfig": {
+    "access": "restricted"
   }
 }

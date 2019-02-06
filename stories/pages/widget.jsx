@@ -58,6 +58,9 @@ export default function init() {
                 accessToken="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdG9yZV9jb2RlIjoibWVkaWFtYXJrdCJ9.bm1niEepZwp2PgvNj9PGxyIpYD0MRF6X1SOOS5ehDxY"
                 articleId="123123123"
                 stock={StockValuesEnum.medium}
+                eans={['12345', '123456', '12345667']}
+                deliveryDate="2019-06-02"
+                deliveryTime="1-3"
                 moreInformationCallback={action(
                     'moreInformationCallback is called'
                 )}

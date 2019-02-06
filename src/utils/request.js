@@ -21,7 +21,9 @@ function parseBody(response) {
 }
 
 function getStringifiedQuery(query) {
-    return Object.keys(query).length ? `?${queryString.stringify(query)}` : '';
+    return Object.keys(query).length
+        ? `?${queryString.stringify(query, { arrayFormat: 'bracket' })}`
+        : '';
 }
 
 /**

@@ -1,13 +1,16 @@
 language: node_js
 node_js:
   - "10"
-script:
-  - yarn run build
-deploy:
-  provider: npm
-  email: "YOUR_EMAIL_ADDRESS"
-  api_key: "YOUR_AUTH_TOKEN"
-  project: ./build/
-  on:
-    tags: true
-    branch: master
+jobs:
+  include:
+    - stage: test
+      script: yarn run test
+    - stage: build
+      script: yarn run build
+    - stage: release
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release
+    
