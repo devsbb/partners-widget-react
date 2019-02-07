@@ -4,6 +4,11 @@ const WidgetStatesEnum = {
     hidden: 'hidden',
 };
 
-const StockValuesEnum = { low: 'low', medium: 'medium', none: 'none' };
+const StockLevelEnum = {
+    low: 'low',
+    medium: 'medium',
+    high: 'high',
+    none: 'none',
+};
 
-export { WidgetStatesEnum, StockValuesEnum };
+export { WidgetStatesEnum, StockLevelEnum };

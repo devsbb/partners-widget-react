@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // Components
-import { Widget } from '../components';
-
-// Services
-import { productService } from '../services';
+import { Widget, ProductFetcher } from '../components';
 
 // Utils
-import { WidgetStatesEnum, StockValuesEnum, handleGlobalError } from '../utils';
+import { WidgetStatesEnum, handleGlobalError, requireOneOf } from '../utils';
+import { SupportedLocalesEnum } from '../translations';
 
 class DefaultWidget extends Component {
     constructor(props) {
@@ -17,69 +15,67 @@ class DefaultWidget extends Component {
         this.handleError = this.handleError.bind(this);
 
         this.state = {
-            widgetState: WidgetStatesEnum.hidden,
-            checkoutUrl: '',
-            price: {
-                originalPriceInCents: 0,
-                discountPriceInCents: 0,
-                minimalPrice: false,
-            },
+            hasError: false,
         };
     }
 
-    componentDidMount() {
-        const { articleId, accessToken, stock } = this.props;
-
-        productService
-            .getProduct(accessToken, articleId, stock)
-            .then(product => {
-                const {
-                    cheapestPlan,
-                    rentalPlans,
-                    checkoutUrl,
-                    widgetState,
-                } = product;
-
-                const { price } = cheapestPlan;
-
-                this.setState({
-                    price: {
-                        ...price,
-                        minimalPrice: rentalPlans.length > 0,
-                    },
-                    checkoutUrl,
-                    // TODO Remove `WidgetStatesEnum.available` when API will be done
-                    widgetState: widgetState || WidgetStatesEnum.available,
-                });
-            })
-            .catch(this.handleError);
+    componentDidCatch(error) {
+        this.handleError(error);
     }
 
     handleError(error) {
         this.setState({
-            widgetState: WidgetStatesEnum.hidden,
+            hasError: true,
         });
 
         handleGlobalError(error);
     }
 
     render() {
-        const { moreInformationCallback } = this.props;
-        const { widgetState, checkoutUrl, price } = this.state;
+        const {
+            moreInformationCallback,
+            articleId,
+            accessToken,
+            stockEnumerated,
+            stockAbsolute,
+            eans,
+            deliveryDate,
+            deliveryTime,
+            locale,
+            className,
+            classNames,
+        } = this.props;
 
-        if (widgetState === WidgetStatesEnum.hidden) {
+        const { hasError } = this.state;
+
+        if (hasError) {
             return null;
         }
 
-        const isUnavailable = widgetState === WidgetStatesEnum.unavailable;
-
         return (
-            <Widget
-                price={price}
-                checkoutUrl={checkoutUrl}
-                unavailable={isUnavailable}
-                moreInformationCallback={moreInformationCallback}
-            />
+            <ProductFetcher
+                articleId={articleId}
+                accessToken={accessToken}
+                stockEnumerated={stockEnumerated}
+                stockAbsolute={stockAbsolute}
+                eans={eans}
+                deliveryDate={deliveryDate}
+                deliveryTime={deliveryTime}
+            >
+                {({ price, checkoutUrl, widgetState }) => (
+                    <Widget
+                        className={className}
+                        classNames={classNames}
+                        locale={locale}
+                        price={price}
+                        checkoutUrl={checkoutUrl}
+                        unavailable={
+                            widgetState === WidgetStatesEnum.unavailable
+                        }
+                        moreInformationCallback={moreInformationCallback}
+                    />
+                )}
+            </ProductFetcher>
         );
     }
 }
@@ -87,19 +83,57 @@ class DefaultWidget extends Component {
 DefaultWidget.propTypes = {
     articleId: PropTypes.string.isRequired,
     accessToken: PropTypes.string.isRequired,
-    stock: PropTypes.oneOfType([
-        PropTypes.oneOf([
-            StockValuesEnum.low,
-            StockValuesEnum.medium,
-            StockValuesEnum.none,
+    stockEnumerated: requireOneOf({
+        stockEnumerated: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
         ]),
-        PropTypes.number,
-    ]).isRequired,
+        stockAbsolute: PropTypes.string,
+    }),
+    stockAbsolute: PropTypes.string,
     moreInformationCallback: PropTypes.func,
+    eans: PropTypes.arrayOf(PropTypes.string),
+    deliveryDate: PropTypes.string,
+    deliveryTime: PropTypes.string,
+    locale: PropTypes.oneOf(Object.keys(SupportedLocalesEnum)),
+    className: PropTypes.string,
+    classNames: PropTypes.shape({
+        headerSection: PropTypes.string,
+        headerText: PropTypes.string,
+        moreInfoLink: PropTypes.string,
+        priceContainer: PropTypes.string,
+        price: PropTypes.string,
+        discountPriceContainer: PropTypes.string,
+        discountPrice: PropTypes.string,
+        originalPrice: PropTypes.string,
+        button: PropTypes.string,
+        buttonIcon: PropTypes.string,
+        buttonText: PropTypes.string,
+    }),
 };
 
 DefaultWidget.defaultProps = {
     moreInformationCallback: null,
+    eans: [],
+    deliveryTime: null,
+    deliveryDate: null,
+    stockEnumerated: null,
+    stockAbsolute: null,
+    locale: SupportedLocalesEnum.de,
+    className: null,
+    classNames: {
+        headerSection: null,
+        headerText: null,
+        moreInfoLink: null,
+        priceContainer: null,
+        price: null,
+        discountPriceContainer: null,
+        discountPrice: null,
+        originalPrice: null,
+        button: null,
+        buttonIcon: null,
+        buttonText: null,
+    },
 };
 
 export default DefaultWidget;
