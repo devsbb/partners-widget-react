@@ -5,6 +5,8 @@ install:
   - yarn install --ignore-engines
 jobs:
   include:
+    - stage: prepare cache
+      script: true
     - stage: test
       script: yarn run test
     - stage: build
