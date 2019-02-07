@@ -3,17 +3,15 @@ node_js:
   - "10"
 install:
   - yarn install --ignore-engines
+cache: yarn
 jobs:
   include:
     - stage: prepare cache
       script: true
     - stage: test
       script: yarn run test
-    - stage: build
+    - stage: deploy
       script: yarn run build
-    - stage: release
-      # Skips tests as they're running in previous stage
-      script: skip
       deploy:
         provider: script
         skip_cleanup: true
@@ -21,4 +19,3 @@ jobs:
           branch: master
         script:
           - yarn run semantic-release
-    
