@@ -56,8 +56,7 @@ export default function init() {
                 stockEnumerated={StockLevelEnum.medium}
                 stockAbsolute="123"
                 eans={['12345', '123456', '12345667']}
-                deliveryDate="2019-06-02"
-                deliveryTime="1-3"
+                deliveryDate="2019-08-02"
                 moreInformationCallback={action(
                     'moreInformationCallback is called'
                 )}

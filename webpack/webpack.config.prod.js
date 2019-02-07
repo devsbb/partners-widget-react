@@ -5,6 +5,7 @@ const postcssFlexbugsFixes = require('postcss-flexbugs-fixes');
 const postcssAutoreset = require('postcss-autoreset');
 const postcssInitial = require('postcss-initial');
 const postcssFontMagician = require('postcss-font-magician');
+const cssnano = require('cssnano');
 const webpack = require('webpack');
 
 const paths = require('./paths');
@@ -13,10 +14,7 @@ const variables = require('./variables');
 module.exports = {
     mode: 'production',
     entry: {
-        package: [
-            'whatwg-fetch',
-            require.resolve(path.join(paths.source, 'index.js')),
-        ],
+        package: [require.resolve(path.join(paths.source, 'index.js'))],
     },
     output: {
         filename: 'index.js',
@@ -27,6 +25,11 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.json', '.jsx'],
         modules: [paths.source, paths.nodeModules],
+    },
+    externals: {
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        'prop-types': 'PropTypes',
     },
     module: {
         rules: [
@@ -93,6 +96,17 @@ module.exports = {
                                         ),
                                 }),
                                 postcssInitial,
+                                // Minify CSS
+                                cssnano({
+                                    preset: [
+                                        'default',
+                                        {
+                                            discardComments: {
+                                                removeAll: true,
+                                            },
+                                        },
+                                    ],
+                                }),
                             ],
                         },
                     },

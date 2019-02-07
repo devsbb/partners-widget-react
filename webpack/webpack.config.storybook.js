@@ -6,16 +6,14 @@ const postcssAutoreset = require('postcss-autoreset');
 const postcssInitial = require('postcss-initial');
 const postcssFontMagician = require('postcss-font-magician');
 const webpack = require('webpack');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const paths = require('./paths');
 const variables = require('./variables');
 
 module.exports = {
     entry: {
-        package: [
-            'whatwg-fetch',
-            require.resolve(path.join(paths.source, 'index.js')),
-        ],
+        package: [require.resolve(path.join(paths.source, 'index.js'))],
     },
     devtool: 'eval-source-map',
     resolve: {
@@ -102,5 +100,8 @@ module.exports = {
             },
         ],
     },
-    plugins: [new webpack.DefinePlugin(variables.dev)],
+    plugins: [
+        new webpack.DefinePlugin(variables.dev),
+        new BundleAnalyzerPlugin({ defaultSizes: 'gzip' }),
+    ],
 };

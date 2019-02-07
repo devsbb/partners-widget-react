@@ -1,5 +1,8 @@
-import 'whatwg-fetch';
+import fetchPonyfill from 'fetch-ponyfill';
+import promisePonyfill from 'pinkie-promise';
 import queryString from 'query-string';
+
+const { fetch } = fetchPonyfill({ Promise: promisePonyfill });
 
 function checkStatus(payload) {
     const { status, statusText } = payload.response;
@@ -28,7 +31,7 @@ function getStringifiedQuery(query) {
 
 /**
  * fetchJSON
- * Call `fetch` (with polyfill) in order to fetch JSON.
+ * Call `fetch` (from unfetch) in order to fetch JSON.
  * It gets relative API path and request otions
  * Return promise with payload:
  * @example {
