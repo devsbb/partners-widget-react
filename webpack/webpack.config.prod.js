@@ -13,10 +13,7 @@ const variables = require('./variables');
 module.exports = {
     mode: 'production',
     entry: {
-        package: [
-            'whatwg-fetch',
-            require.resolve(path.join(paths.source, 'index.js')),
-        ],
+        package: [require.resolve(path.join(paths.source, 'index.js'))],
     },
     output: {
         filename: 'index.js',

@@ -12,10 +12,7 @@ const variables = require('./variables');
 
 module.exports = {
     entry: {
-        package: [
-            'whatwg-fetch',
-            require.resolve(path.join(paths.source, 'index.js')),
-        ],
+        package: [require.resolve(path.join(paths.source, 'index.js'))],
     },
     devtool: 'eval-source-map',
     resolve: {

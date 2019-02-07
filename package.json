@@ -5,7 +5,9 @@
   "author": "getgrover.com",
   "license": "MIT",
   "main": "build/index.js",
-  "files": ["./build"],
+  "files": [
+    "./build"
+  ],
   "private": false,
   "scripts": {
     "start": "yarn run storybook",
@@ -63,8 +65,9 @@
     "webpack-cli": "^3.2.1"
   },
   "dependencies": {
-    "query-string": "^6.2.0",
-    "whatwg-fetch": "^3.0.0"
+    "fetch-ponyfill": "^6.0.2",
+    "pinkie-promise": "^2.0.1",
+    "query-string": "^6.2.0"
   },
   "peerDependencies": {
     "classnames": "^2.2.6",
@@ -78,6 +81,6 @@
   },
   "publishConfig": {
     "access": "public",
-    "tag": "beta"
+    "tag": "latest"
   }
 }

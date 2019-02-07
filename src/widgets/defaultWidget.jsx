@@ -62,19 +62,25 @@ class DefaultWidget extends Component {
                 deliveryDate={deliveryDate}
                 deliveryTime={deliveryTime}
             >
-                {({ price, checkoutUrl, widgetState }) => (
-                    <Widget
-                        className={className}
-                        classNames={classNames}
-                        locale={locale}
-                        price={price}
-                        checkoutUrl={checkoutUrl}
-                        unavailable={
-                            widgetState === WidgetStatesEnum.unavailable
-                        }
-                        moreInformationCallback={moreInformationCallback}
-                    />
-                )}
+                {({ price, checkoutUrl, widgetState }) => {
+                    if (widgetState === WidgetStatesEnum.hidden) {
+                        return null;
+                    }
+
+                    return (
+                        <Widget
+                            className={className}
+                            classNames={classNames}
+                            locale={locale}
+                            price={price}
+                            checkoutUrl={checkoutUrl}
+                            unavailable={
+                                widgetState === WidgetStatesEnum.unavailable
+                            }
+                            moreInformationCallback={moreInformationCallback}
+                        />
+                    );
+                }}
             </ProductFetcher>
         );
     }
