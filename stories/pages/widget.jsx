@@ -11,7 +11,6 @@ export default function init() {
     storiesOf('Partners widget', module)
         .add('Widget with discount', () => (
             <Widget
-                productName="Jetzt mieten statt kaufen"
                 price={{
                     originalPriceInCents: 5299,
                     discountPriceInCents: 4890,
@@ -22,7 +21,6 @@ export default function init() {
         ))
         .add('Widget with minimal price', () => (
             <Widget
-                productName="Jetzt mieten statt kaufen"
                 price={{
                     originalPriceInCents: 5299,
                     minimalPrice: true,
@@ -32,7 +30,6 @@ export default function init() {
         ))
         .add('Widget with discount and minimal price', () => (
             <Widget
-                productName="Jetzt mieten statt kaufen"
                 price={{
                     originalPriceInCents: 5299,
                     discountPriceInCents: 4890,
@@ -43,7 +40,6 @@ export default function init() {
         ))
         .add('Widget is unavailable', () => (
             <Widget
-                productName="Jetzt mieten statt kaufen"
                 price={{
                     originalPriceInCents: 5299,
                     discountPriceInCents: 4890,
