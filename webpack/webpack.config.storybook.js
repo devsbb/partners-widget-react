@@ -102,6 +102,6 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin(variables.dev),
-        new BundleAnalyzerPlugin({ defaultSizes: 'gzip' }),
+        new BundleAnalyzerPlugin(),
     ],
 };
