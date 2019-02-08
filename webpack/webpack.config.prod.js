@@ -20,6 +20,7 @@ module.exports = {
         filename: 'index.js',
         path: paths.output,
         publicPath: paths.static,
+        libraryTarget: 'umd',
     },
     devtool: 'source-map',
     resolve: {
@@ -27,9 +28,9 @@ module.exports = {
         modules: [paths.source, paths.nodeModules],
     },
     externals: {
-        react: 'React',
-        'react-dom': 'ReactDOM',
-        'prop-types': 'PropTypes',
+        react: 'react',
+        'react-dom': 'react-dom',
+        'prop-types': 'prop-types',
     },
     module: {
         rules: [
@@ -46,7 +47,8 @@ module.exports = {
                         options: {
                             insertAt: 'top',
                             singleton: true,
-                            sourceMap: true,
+                            sourceMap: false,
+                            hmr: false,
                         },
                     },
                     {
