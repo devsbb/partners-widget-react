@@ -9,7 +9,7 @@
     "./build"
   ],
   "private": false,
-  "sideEffects": false,
+  "sideEffects": true,
   "scripts": {
     "start": "yarn run storybook",
     "test": "echo NOTE: tests are not set up",
