@@ -13,7 +13,7 @@ module.exports = {
         ],
     },
     globals: {
-        API_BASE_URL: true,
+        SERVER_URL: true,
         fetch: true,
     },
 };

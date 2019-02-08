@@ -44,6 +44,7 @@ class DefaultWidget extends Component {
             locale,
             className,
             classNames,
+            serverUrl,
         } = this.props;
 
         const { hasError } = this.state;
@@ -61,6 +62,7 @@ class DefaultWidget extends Component {
                 eans={eans}
                 deliveryDate={deliveryDate}
                 deliveryTime={deliveryTime}
+                serverUrl={serverUrl}
             >
                 {({ price, checkoutUrl, widgetState }) => {
                     if (widgetState === WidgetStatesEnum.hidden) {
@@ -102,6 +104,7 @@ DefaultWidget.propTypes = {
     deliveryDate: PropTypes.string,
     deliveryTime: PropTypes.string,
     locale: PropTypes.oneOf(Object.keys(SupportedLocalesEnum)),
+    serverUrl: PropTypes.string,
     className: PropTypes.string,
     classNames: PropTypes.shape({
         headerSection: PropTypes.string,
@@ -126,6 +129,7 @@ DefaultWidget.defaultProps = {
     stockEnumerated: null,
     stockAbsolute: null,
     locale: SupportedLocalesEnum.de,
+    serverUrl: null,
     className: null,
     classNames: {
         headerSection: null,
