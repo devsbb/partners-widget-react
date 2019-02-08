@@ -54,7 +54,6 @@ export default function init() {
                 accessToken="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdG9yZV9jb2RlIjoibWVkaWFtYXJrdCJ9.bm1niEepZwp2PgvNj9PGxyIpYD0MRF6X1SOOS5ehDxY"
                 articleId="123123123"
                 stockEnumerated={StockLevelEnum.medium}
-                stockAbsolute="123"
                 eans={['12345', '123456', '12345667']}
                 deliveryDate="2019-08-02"
                 moreInformationCallback={action(
