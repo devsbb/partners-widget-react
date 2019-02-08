@@ -33,6 +33,7 @@ class ProductFetcher extends Component {
             eans,
             deliveryDate,
             deliveryTime,
+            serverUrl,
         } = this.props;
 
         productService
@@ -44,6 +45,7 @@ class ProductFetcher extends Component {
                 eans,
                 deliveryDate,
                 deliveryTime,
+                serverUrl,
             })
             .then(product => {
                 const {
@@ -101,6 +103,7 @@ ProductFetcher.propTypes = {
     deliveryDate: PropTypes.string,
     deliveryTime: PropTypes.string,
     children: PropTypes.func.isRequired,
+    serverUrl: PropTypes.string,
 };
 
 ProductFetcher.defaultProps = {
@@ -109,6 +112,7 @@ ProductFetcher.defaultProps = {
     deliveryDate: null,
     stockEnumerated: null,
     stockAbsolute: null,
+    serverUrl: null,
 };
 
 export default ProductFetcher;

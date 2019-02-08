@@ -56,6 +56,7 @@ function getProduct(payload) {
         deliveryTime,
         stockEnumerated,
         stockAbsolute,
+        serverUrl,
     } = payload;
 
     const queryParams = {
@@ -78,6 +79,7 @@ function getProduct(payload) {
     const promise = fetchJSON(`/partners/products/${articleId}`, {
         method: 'GET',
         query: queryParams,
+        serverUrl,
     })
         .then(handleResponse)
         .catch(handleError);

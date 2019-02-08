@@ -31,7 +31,7 @@ function getStringifiedQuery(query) {
 
 /**
  * fetchJSON
- * Call `fetch` (from unfetch) in order to fetch JSON.
+ * Call `fetch` (with ponyfill) in order to fetch JSON.
  * It gets relative API path and request otions
  * Return promise with payload:
  * @example {
@@ -42,7 +42,7 @@ function getStringifiedQuery(query) {
  * @param {object} options
  */
 const fetchJSON = (relativePath, options = {}) => {
-    const { query = {}, headers, ...restOptions } = options;
+    const { query = {}, headers, serverUrl, ...restOptions } = options;
 
     const stringifiedQuery = getStringifiedQuery(query);
 
@@ -55,9 +55,10 @@ const fetchJSON = (relativePath, options = {}) => {
         ...restOptions,
     };
 
-    // API_BASE_URL is getting from webpack global variables
+    // SERVER_URL is getting from webpack global variables
+    const server = serverUrl || SERVER_URL;
     const promise = fetch(
-        `${API_BASE_URL}${relativePath}${stringifiedQuery}`,
+        `${server}${relativePath}${stringifiedQuery}`,
         requestOptions
     )
         .then(parseBody)
