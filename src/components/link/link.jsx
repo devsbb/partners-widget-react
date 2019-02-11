@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { preventDefaultClickHandler } from '../../utils';
+import { preventDefaultEventHandler } from '../../utils';
 
 const Link = ({ className, children, href, onClick, disabled, target }) => (
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <a
         href={disabled ? '' : href}
         aria-disabled={disabled}
-        onClick={disabled ? preventDefaultClickHandler : onClick}
+        onClick={disabled ? preventDefaultEventHandler : onClick}
         target={target}
         className={classNames('grover-link', className, {
             'grover-link--disabled': disabled,
