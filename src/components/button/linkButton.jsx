@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import ButtonText from '../buttonText';
 
-import { preventDefaultClickHandler } from '../../utils';
+import { preventDefaultEventHandler } from '../../utils';
 
 const LinkButton = ({
     className,
@@ -18,7 +18,7 @@ const LinkButton = ({
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <a
         href={disabled ? '' : href}
-        onClick={disabled ? preventDefaultClickHandler : null}
+        onClick={disabled ? preventDefaultEventHandler : null}
         target={target}
         aria-disabled={disabled}
         className={cn('grover-button', className, {

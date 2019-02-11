@@ -6,7 +6,8 @@
   "license": "MIT",
   "main": "build/index.js",
   "files": [
-    "./build"
+    "./build",
+    "./docs"
   ],
   "private": false,
   "sideEffects": true,

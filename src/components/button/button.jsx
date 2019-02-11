@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import ButtonText from '../buttonText';
 
-import { preventDefaultClickHandler } from '../../utils';
+import { preventDefaultEventHandler } from '../../utils';
 
 const Button = ({
     className,
@@ -16,7 +16,7 @@ const Button = ({
 }) => (
     <button
         disabled={disabled}
-        onClick={disabled ? preventDefaultClickHandler : onClick}
+        onClick={disabled ? preventDefaultEventHandler : onClick}
         type="button"
         className={cn('grover-button', className, {
             'grover-button--disabled': disabled,
