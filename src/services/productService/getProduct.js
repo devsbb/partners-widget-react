@@ -60,20 +60,20 @@ function getProduct(payload) {
     } = payload;
 
     const queryParams = {
-        accessToken,
+        access_token: accessToken,
         eans,
     };
 
     if (stockAbsolute) {
-        queryParams.stockAbsolute = stockAbsolute;
+        queryParams.stock_absolute = stockAbsolute;
     } else if (stockEnumerated) {
-        queryParams.stockEnumerated = stockEnumerated;
+        queryParams.stock_enumerated = stockEnumerated;
     }
 
     if (deliveryDate) {
-        queryParams.deliveryDate = deliveryDate;
+        queryParams.delivery_date = deliveryDate;
     } else if (deliveryTime) {
-        queryParams.deliveryTime = deliveryTime;
+        queryParams.delivery_time = deliveryTime;
     }
 
     const promise = fetchJSON(`/partners/products/${articleId}`, {
