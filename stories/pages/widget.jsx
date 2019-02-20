@@ -17,6 +17,7 @@ export default function init() {
                     minimalPrice: false,
                 }}
                 checkoutUrl="https://getgrover.com"
+                onButtonClick={action("Widget's button click handler")}
             />
         ))
         .add('Widget with minimal price', () => (
@@ -26,6 +27,7 @@ export default function init() {
                     minimalPrice: true,
                 }}
                 checkoutUrl="https://getgrover.com"
+                onButtonClick={action("Widget's button click handler")}
             />
         ))
         .add('Widget with discount and minimal price', () => (
@@ -36,6 +38,7 @@ export default function init() {
                     minimalPrice: true,
                 }}
                 checkoutUrl="https://getgrover.com"
+                onButtonClick={action("Widget's button click handler")}
             />
         ))
         .add('Widget is unavailable', () => (
@@ -47,6 +50,9 @@ export default function init() {
                 }}
                 checkoutUrl="https://getgrover.com"
                 unavailable
+                onButtonClick={action(
+                    'Unavailable button click handler: Should not be called'
+                )}
             />
         ))
         .add('Widget with API integration', () => (
@@ -59,6 +65,7 @@ export default function init() {
                 moreInformationCallback={action(
                     'moreInformationCallback is called'
                 )}
+                onButtonClick={action("Widget's button click handler")}
             />
         ));
 }

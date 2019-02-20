@@ -14,11 +14,12 @@ const LinkButton = ({
     href,
     target,
     disabled,
+    onClick,
 }) => (
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <a
         href={disabled ? '' : href}
-        onClick={disabled ? preventDefaultEventHandler : null}
+        onClick={disabled ? preventDefaultEventHandler : onClick}
         target={target}
         aria-disabled={disabled}
         className={cn('grover-button', className, {
@@ -43,6 +44,7 @@ LinkButton.propTypes = {
     href: PropTypes.string.isRequired,
     target: PropTypes.string,
     disabled: PropTypes.bool,
+    onClick: PropTypes.func,
 };
 
 LinkButton.defaultProps = {
@@ -54,6 +56,7 @@ LinkButton.defaultProps = {
     icon: null,
     target: null,
     disabled: false,
+    onClick: () => {},
 };
 
 export default LinkButton;

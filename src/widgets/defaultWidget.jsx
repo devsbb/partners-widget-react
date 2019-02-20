@@ -45,6 +45,7 @@ class DefaultWidget extends Component {
             className,
             classNames,
             serverUrl,
+            onButtonClick,
         } = this.props;
 
         const { hasError } = this.state;
@@ -80,6 +81,7 @@ class DefaultWidget extends Component {
                                 widgetState === WidgetStatesEnum.unavailable
                             }
                             moreInformationCallback={moreInformationCallback}
+                            onButtonClick={onButtonClick}
                         />
                     );
                 }}
@@ -119,6 +121,7 @@ DefaultWidget.propTypes = {
         buttonIcon: PropTypes.string,
         buttonText: PropTypes.string,
     }),
+    onButtonClick: PropTypes.func,
 };
 
 DefaultWidget.defaultProps = {
@@ -144,6 +147,7 @@ DefaultWidget.defaultProps = {
         buttonIcon: null,
         buttonText: null,
     },
+    onButtonClick: () => {},
 };
 
 export default DefaultWidget;
