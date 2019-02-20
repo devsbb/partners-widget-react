@@ -68,7 +68,9 @@ class Widget extends Component {
             price,
             unavailable,
             locale,
+            onButtonClick,
         } = this.props;
+
         const priceClassNames = mapClassNamesToPriceClassNames(classNames);
         const buttonClassNames = mapClassNamesToButtonClassNames(classNames);
 
@@ -125,6 +127,7 @@ class Widget extends Component {
                         disabled={unavailable}
                         className={classNames.button}
                         classNames={buttonClassNames}
+                        onClick={onButtonClick}
                     >
                         <FormattedMessage
                             translationKey={
@@ -164,6 +167,7 @@ Widget.propTypes = {
     }).isRequired,
     unavailable: PropTypes.bool,
     locale: PropTypes.oneOf(Object.keys(SupportedLocalesEnum)),
+    onButtonClick: PropTypes.func,
 };
 
 Widget.defaultProps = {
@@ -184,6 +188,7 @@ Widget.defaultProps = {
     moreInformationCallback: null,
     unavailable: false,
     locale: SupportedLocalesEnum.de,
+    onButtonClick: () => {},
 };
 
 export default Widget;
