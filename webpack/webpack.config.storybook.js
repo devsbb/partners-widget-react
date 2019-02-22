@@ -13,7 +13,9 @@ const variables = require('./variables');
 
 module.exports = {
     entry: {
-        package: [require.resolve(path.join(paths.source, 'index.js'))],
+        package: [
+            require.resolve(path.join(paths.entrypoints, 'storybook.js')),
+        ],
     },
     devtool: 'eval-source-map',
     resolve: {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import { Price, DiscountPrice } from '../../src/components';
+import { Price, DiscountPrice } from '../../entrypoints/storybook';
 
 export default function init() {
     storiesOf('Price', module)

@@ -61,6 +61,9 @@
     "postcss-initial": "^3.0.0",
     "precss": "^4.0.0",
     "prettier": "^1.16.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
     "react-hot-loader": "^4.6.3",
     "semantic-release": "^15.13.3",
     "semantic-release-cli": "^4.1.0",
@@ -70,12 +73,13 @@
     "webpack-cli": "^3.2.1"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "fetch-ponyfill": "^6.0.2",
+    "insert-css": "^2.0.0",
     "pinkie-promise": "^2.0.1",
     "query-string": "^6.2.0"
   },
   "peerDependencies": {
-    "classnames": "^2.2.6",
     "prop-types": "^15.6.2",
     "react": "^16.3.0",
     "react-dom": "^16.3.0"

@@ -1,5 +1,3 @@
-import '../styles/index.css';
-
 import Button, { LinkButton } from './button';
 import ButtonText from './buttonText';
 import Container from './container';

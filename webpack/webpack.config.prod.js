@@ -14,13 +14,16 @@ const variables = require('./variables');
 module.exports = {
     mode: 'production',
     entry: {
-        package: [require.resolve(path.join(paths.source, 'index.js'))],
+        package: [
+            require.resolve(path.join(paths.entrypoints, 'production.js')),
+        ],
     },
     output: {
         filename: 'index.js',
         path: paths.output,
         publicPath: paths.static,
         libraryTarget: 'umd',
+        globalObject: 'this',
     },
     devtool: 'source-map',
     resolve: {
@@ -42,15 +45,6 @@ module.exports = {
             {
                 test: /\.(scss|css)$/,
                 use: [
-                    {
-                        loader: require.resolve('style-loader'),
-                        options: {
-                            insertAt: 'top',
-                            singleton: true,
-                            sourceMap: false,
-                            hmr: false,
-                        },
-                    },
                     {
                         loader: require.resolve('css-loader'),
                         options: {
