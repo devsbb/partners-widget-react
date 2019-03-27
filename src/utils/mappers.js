@@ -2,7 +2,7 @@ export function mapApiRentalPlan(apiRentalPlan) {
     const {
         id,
         price,
-        promotionPrice,
+        promotion_price: promotionPrice,
         cheapest,
         description,
         minimum_term_months: minimumTermMonths,
