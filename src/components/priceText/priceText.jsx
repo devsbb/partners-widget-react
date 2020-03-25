@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const PriceText = ({ className, children }) => (
-    <h2 className={classNames('grover-price-text', className)}>{children}</h2>
+    <p className={classNames('grover-price-text', className)}>{children}</p>
 );
 
 PriceText.propTypes = {
