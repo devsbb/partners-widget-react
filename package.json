@@ -65,7 +65,7 @@
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-hot-loader": "^4.6.3",
-    "semantic-release": "^15.13.3",
+    "semantic-release": "^17.2.3",
     "semantic-release-cli": "^4.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.0",
