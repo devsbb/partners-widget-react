@@ -33,7 +33,7 @@ class DefaultWidget extends Component {
 
     render() {
         const {
-            moreInformationCallback,
+            moreInformationUrl,
             articleId,
             accessToken,
             stockEnumerated,
@@ -80,7 +80,7 @@ class DefaultWidget extends Component {
                             unavailable={
                                 widgetState === WidgetStatesEnum.unavailable
                             }
-                            moreInformationCallback={moreInformationCallback}
+                            moreInformationUrl={moreInformationUrl}
                             onButtonClick={onButtonClick}
                         />
                     );
@@ -101,7 +101,7 @@ DefaultWidget.propTypes = {
         stockAbsolute: PropTypes.string,
     }),
     stockAbsolute: PropTypes.string,
-    moreInformationCallback: PropTypes.func,
+    moreInformationUrl: PropTypes.string,
     eans: PropTypes.arrayOf(PropTypes.string),
     deliveryDate: PropTypes.string,
     deliveryTime: PropTypes.string,
@@ -125,7 +125,7 @@ DefaultWidget.propTypes = {
 };
 
 DefaultWidget.defaultProps = {
-    moreInformationCallback: null,
+    moreInformationUrl: null,
     eans: [],
     deliveryTime: null,
     deliveryDate: null,

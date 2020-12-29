@@ -2,13 +2,13 @@
 
 Our React package is available from npm. Simply install using a package manager of your choice.
 
-Installation with npm: 
+Installation with npm:
 
 ```
 npm install @getgrover/react-partner-widget --save
 ```
 
-Installation with yarn: 
+Installation with yarn:
 
 ```
 yarn add @getgrover/react-partner-widget
@@ -24,15 +24,15 @@ Import the component at the desired location:
 import GroverWidget from "@getgrover/react-partner-widget"
 ```
 
-`GroverWidget` imports the original default design. Future releases will add more designs that can be selectively imported. 
+`GroverWidget` imports the original default design. Future releases will add more designs that can be selectively imported.
 
 ---
 
 # Property Interface
 
-In order to display the Grover button and apply agreed-upon recirculation rules, we'll need some data. Here's a list of all the props the component accepts: 
+In order to display the Grover button and apply agreed-upon recirculation rules, we'll need some data. Here's a list of all the props the component accepts:
 
-`articleId` **Required** _String_: Pass your article ID so that we can match with the right product variant. 
+`articleId` **Required** _String_: Pass your article ID so that we can match with the right product variant.
 
 `accessToken` **Required** _String_: Authenticates and identifies your request.
 
@@ -48,13 +48,13 @@ In order to display the Grover button and apply agreed-upon recirculation rules,
 
 `classNames` _Object_: See [Customizing the design](#customizing-the-design)
 
-`moreInformationCallback` _Object_: Function to call when user clicks "More Information". Links to Grover landing page by default.
+`moreInformationUrl` _String_: Link to open when user clicks "More Information". Links to Grover checkout page by default.
 
 `deliveryDate` _Date String_: See [Passing Delivery estimates](#passing-delivery-estimates).
 
 `deliveryTime` _Number_: See [Passing Delivery estimates](#passing-delivery-estimates)
 
-`serverUrl` _String_: Override URL for Grover API. Defaults to `api.getgrover.com`. See [Testing and QA Environments](#testing-and-qa-environments) 
+`serverUrl` _String_: Override URL for Grover API. Defaults to `api.getgrover.com`. See [Testing and QA Environments](#testing-and-qa-environments)
 
 `onButtonClick` _Function_: Called on rental button click with React SyntheticEvent parameter. Can be used for analytics.
 
@@ -62,13 +62,13 @@ In order to display the Grover button and apply agreed-upon recirculation rules,
 
 Stock levels are required to decide if the button should be displayed, as well as for applying recirculation rules. You have the choice to pass stock levels either as an absolute value using the `stockAbsolute` property, or pass an enumeration using the `stockEnumerated` property. You need to provide either-or, otherwise, the widget won't display.
 
-If you want to use enumerated values, import our stock enumeration value constants along with the component: 
+If you want to use enumerated values, import our stock enumeration value constants along with the component:
 
 ```js
 import GroverWidget, { STOCK_LEVEL_ENUM } from "@getgrover/react-partner-widget"
 ```
 
-Available enumerations are: 
+Available enumerations are:
 
 ```js
 const STOCK_LEVEL_ENUM = {
@@ -81,7 +81,7 @@ const STOCK_LEVEL_ENUM = {
 
 When initializing the component, map the values available to you onto these constants, then pass to the `stockEnumerated` property.
 
-For example, let's say your API returns a stock level enumeration with the following possible values: `out-of-stock`, `few`, `some` or `lot`. You could set your mapping up like this: 
+For example, let's say your API returns a stock level enumeration with the following possible values: `out-of-stock`, `few`, `some` or `lot`. You could set your mapping up like this:
 
 ```js
 function mapStockValue(stockValue) {
@@ -100,7 +100,7 @@ function mapStockValue(stockValue) {
 }
 ```
 
-Then, pass the translated enumeration to the component: 
+Then, pass the translated enumeration to the component:
 
 ```js
 stockEnumerated={{ mapStockValue(yourEnumeratedStockLevel) }}
@@ -108,17 +108,17 @@ stockEnumerated={{ mapStockValue(yourEnumeratedStockLevel) }}
 
 #### Passing Delivery estimates
 
-Delivery time estimates are required in order to fulfill some recirculation agreements. If you're unsure if you should pass this data, please ask your account manager. You have the choice to either pass an absolute delivery estimation date in the format `YYYY.MM.DD` to the `deliveryDate` property, or pass a relative amount of days from now to `deliveryTime`. For example, if your system estimates a delivery time of 3 days, pass `3`. 
+Delivery time estimates are required in order to fulfill some recirculation agreements. If you're unsure if you should pass this data, please ask your account manager. You have the choice to either pass an absolute delivery estimation date in the format `YYYY.MM.DD` to the `deliveryDate` property, or pass a relative amount of days from now to `deliveryTime`. For example, if your system estimates a delivery time of 3 days, pass `3`.
 
 ---
 
 # Customizing the design
 
-You can customize any element of the button flexibly. To do so, we allow you to add your own custom classes to any of the button's elements. That way, you can structure your CSS however you want, and just tell our component what classes to add. 
+You can customize any element of the button flexibly. To do so, we allow you to add your own custom classes to any of the button's elements. That way, you can structure your CSS however you want, and just tell our component what classes to add.
 
 #### Override elements in the component
 
-Use the `classNames` property to specify what class names should be applied to what elements. Here's a list of the component's elements: 
+Use the `classNames` property to specify what class names should be applied to what elements. Here's a list of the component's elements:
 
 ```js
 classNames: PropTypes.shape({
@@ -150,7 +150,7 @@ Let's say you want to change the background of the button to yellow, and the pri
 }
 ```
 
-Then, let the component know what classes to apply to the button and price elements by specifying them in the `classNames` property: 
+Then, let the component know what classes to apply to the button and price elements by specifying them in the `classNames` property:
 
 ```js
 classNames={{ button: "custom-btn",
@@ -167,7 +167,7 @@ If you want to override the component's main container, you'll need to pass the 
 className="custom-container-styles"
 ```
 
-Let's say you want to put a maximum size of 400px on the whole component. Simply define your CSS class anywhere like this: 
+Let's say you want to put a maximum size of 400px on the whole component. Simply define your CSS class anywhere like this:
 
 ```css
 .custom-container { /* class name can be anything you want */
@@ -175,7 +175,7 @@ Let's say you want to put a maximum size of 400px on the whole component. Simply
 }
 ```
 
-Then, assign the `className` property: 
+Then, assign the `className` property:
 
 ```js
 className="custom-container"
@@ -185,9 +185,9 @@ Your custom styles are now applied to the whole component.
 
 # Testing and QA environments
 
-We can provide you with special tokens for your QA and Staging environments. To set up a new environment, please contact us. We'll synchronize some Article IDs and set up some example products so that you can get testing. 
+We can provide you with special tokens for your QA and Staging environments. To set up a new environment, please contact us. We'll synchronize some Article IDs and set up some example products so that you can get testing.
 
-In your testing environments, pass your special staging `accessToken`, and override the component's `serverUrl` to our staging API, hosted at `https://apist.getgrover.com/api/v1`. 
+In your testing environments, pass your special staging `accessToken`, and override the component's `serverUrl` to our staging API, hosted at `https://apist.getgrover.com/api/v1`.
 
 # Development Guide
 

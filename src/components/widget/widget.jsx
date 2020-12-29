@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
@@ -40,108 +40,82 @@ function mapClassNamesToPriceClassNames(classNames = {}) {
     };
 }
 
-class Widget extends Component {
-    constructor(props) {
-        super(props);
+const Widget = ({
+    className,
+    checkoutUrl,
+    moreInformationUrl,
+    classNames,
+    price,
+    unavailable,
+    locale,
+    onButtonClick,
+}) => {
+    const priceClassNames = mapClassNamesToPriceClassNames(classNames);
+    const buttonClassNames = mapClassNamesToButtonClassNames(classNames);
 
-        this.moreInfoLinkClickHandler = this.moreInfoLinkClickHandler.bind(
-            this
-        );
-    }
-
-    moreInfoLinkClickHandler(event) {
-        const { moreInformationCallback } = this.props;
-
-        event.preventDefault();
-
-        if (typeof moreInformationCallback === 'function') {
-            moreInformationCallback(event);
-        }
-    }
-
-    render() {
-        const {
-            className,
-            checkoutUrl,
-            moreInformationCallback,
-            classNames,
-            price,
-            unavailable,
-            locale,
-            onButtonClick,
-        } = this.props;
-
-        const priceClassNames = mapClassNamesToPriceClassNames(classNames);
-        const buttonClassNames = mapClassNamesToButtonClassNames(classNames);
-
-        return (
-            <LocaleContext.Provider locale={locale}>
-                <Container
-                    ariaDisabled={unavailable}
-                    className={cn(className, {
-                        'grover-widget--unavailable': unavailable,
-                    })}
+    return (
+        <LocaleContext.Provider locale={locale}>
+            <Container
+                ariaDisabled={unavailable}
+                className={cn(className, {
+                    'grover-widget--unavailable': unavailable,
+                })}
+            >
+                <HeaderSection
+                    className={cn(
+                        'grover-widget__header-section',
+                        classNames.headerSection
+                    )}
                 >
-                    <HeaderSection
+                    <HeaderText className={classNames.headerText}>
+                        <FormattedMessage translationKey="RENT_NOW_HEADER" />
+                    </HeaderText>
+
+                    <Link
                         className={cn(
-                            'grover-widget__header-section',
-                            classNames.headerSection
+                            'grover-widget__more-info-link',
+                            classNames.moreInfoLink
                         )}
-                    >
-                        <HeaderText className={classNames.headerText}>
-                            <FormattedMessage translationKey="RENT_NOW_HEADER" />
-                        </HeaderText>
-
-                        <Link
-                            className={cn(
-                                'grover-widget__more-info-link',
-                                classNames.moreInfoLink
-                            )}
-                            target="_blank"
-                            href={checkoutUrl}
-                            disabled={unavailable}
-                            onClick={
-                                moreInformationCallback &&
-                                this.moreInfoLinkClickHandler
-                            }
-                        >
-                            <FormattedMessage translationKey="MORE_INFO_LINK" />
-                        </Link>
-                    </HeaderSection>
-
-                    <ProductPrice
-                        className={cn(
-                            'grover-widget__product-price',
-                            classNames.priceContainer
-                        )}
-                        classNames={priceClassNames}
-                        originalPriceInCents={price.originalPriceInCents}
-                        discountPriceInCents={price.discountPriceInCents}
-                        minimalPrice={price.minimalPrice}
-                    />
-
-                    <LinkButton
-                        icon={GroverIcon}
-                        href={checkoutUrl}
                         target="_blank"
-                        disabled={unavailable}
-                        className={classNames.button}
-                        classNames={buttonClassNames}
-                        onClick={onButtonClick}
+                        href={moreInformationUrl || checkoutUrl}
+                        disabled={moreInformationUrl ? false : unavailable}
                     >
-                        <FormattedMessage
-                            translationKey={
-                                unavailable
-                                    ? 'UNAVAILABLE_BUTTON'
-                                    : 'RENT_WITH_GROVER_BUTTON'
-                            }
-                        />
-                    </LinkButton>
-                </Container>
-            </LocaleContext.Provider>
-        );
-    }
-}
+                        <FormattedMessage translationKey="MORE_INFO_LINK" />
+                    </Link>
+                </HeaderSection>
+
+                <ProductPrice
+                    className={cn(
+                        'grover-widget__product-price',
+                        classNames.priceContainer
+                    )}
+                    classNames={priceClassNames}
+                    originalPriceInCents={price.originalPriceInCents}
+                    discountPriceInCents={price.discountPriceInCents}
+                    minimalPrice={price.minimalPrice}
+                />
+
+                <LinkButton
+                    icon={GroverIcon}
+                    href={checkoutUrl}
+                    target="_blank"
+                    disabled={unavailable}
+                    className={classNames.button}
+                    classNames={buttonClassNames}
+                    onClick={onButtonClick}
+                >
+                    <FormattedMessage
+                        translationKey={
+                            unavailable
+                                ? 'UNAVAILABLE_BUTTON'
+                                : 'RENT_WITH_GROVER_BUTTON'
+                        }
+                    />
+                </LinkButton>
+            </Container>
+        </LocaleContext.Provider>
+    );
+};
 
 Widget.propTypes = {
     className: PropTypes.string,
@@ -159,7 +133,7 @@ Widget.propTypes = {
         buttonText: PropTypes.string,
     }),
     checkoutUrl: PropTypes.string.isRequired,
-    moreInformationCallback: PropTypes.func,
+    moreInformationUrl: PropTypes.string,
     price: PropTypes.shape({
         originalPriceInCents: PropTypes.number.isRequired,
         discountPriceInCents: PropTypes.number,
@@ -185,7 +159,7 @@ Widget.defaultProps = {
         buttonIcon: null,
         buttonText: null,
     },
-    moreInformationCallback: null,
+    moreInformationUrl: null,
     unavailable: false,
     locale: SupportedLocalesEnum.de,
     onButtonClick: () => {},

@@ -64,9 +64,7 @@ export default function init() {
                 stockEnumerated={STOCK_LEVEL_ENUM.medium}
                 eans={['12345', '123456', '12345667']}
                 deliveryDate="2019-08-02"
-                moreInformationCallback={action(
-                    'moreInformationCallback is called'
-                )}
+                moreInformationUrl="https://grover.com"
                 onButtonClick={action("Widget's button click handler")}
             />
         ));
