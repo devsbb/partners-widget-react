@@ -46,6 +46,7 @@ class DefaultWidget extends Component {
             classNames,
             serverUrl,
             onButtonClick,
+            hasBundle,
         } = this.props;
 
         const { hasError } = this.state;
@@ -64,6 +65,7 @@ class DefaultWidget extends Component {
                 deliveryDate={deliveryDate}
                 deliveryTime={deliveryTime}
                 serverUrl={serverUrl}
+                hasBundle={hasBundle}
             >
                 {({ price, checkoutUrl, widgetState }) => {
                     if (widgetState === WidgetStatesEnum.hidden) {
@@ -122,6 +124,7 @@ DefaultWidget.propTypes = {
         buttonText: PropTypes.string,
     }),
     onButtonClick: PropTypes.func,
+    hasBundle: PropTypes.bool,
 };
 
 DefaultWidget.defaultProps = {
@@ -148,6 +151,7 @@ DefaultWidget.defaultProps = {
         buttonText: null,
     },
     onButtonClick: () => {},
+    hasBundle: false,
 };
 
 export default DefaultWidget;

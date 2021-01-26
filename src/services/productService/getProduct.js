@@ -57,6 +57,7 @@ function getProduct(payload) {
         stockEnumerated,
         stockAbsolute,
         serverUrl,
+        hasBundle,
     } = payload;
 
     const queryParams = {
@@ -74,6 +75,10 @@ function getProduct(payload) {
         queryParams.delivery_date = deliveryDate;
     } else if (deliveryTime) {
         queryParams.delivery_time = deliveryTime;
+    }
+
+    if (hasBundle) {
+        queryParams.has_bundle = true;
     }
 
     const promise = fetchJSON(`/partners/products/${articleId}`, {

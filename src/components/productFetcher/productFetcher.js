@@ -34,6 +34,7 @@ class ProductFetcher extends Component {
             deliveryDate,
             deliveryTime,
             serverUrl,
+            hasBundle,
         } = this.props;
 
         productService
@@ -46,6 +47,7 @@ class ProductFetcher extends Component {
                 deliveryDate,
                 deliveryTime,
                 serverUrl,
+                hasBundle,
             })
             .then(product => {
                 const {
@@ -104,6 +106,7 @@ ProductFetcher.propTypes = {
     deliveryTime: PropTypes.string,
     children: PropTypes.func.isRequired,
     serverUrl: PropTypes.string,
+    hasBundle: PropTypes.bool,
 };
 
 ProductFetcher.defaultProps = {
@@ -113,6 +116,7 @@ ProductFetcher.defaultProps = {
     stockEnumerated: null,
     stockAbsolute: null,
     serverUrl: null,
+    hasBundle: false,
 };
 
 export default ProductFetcher;
