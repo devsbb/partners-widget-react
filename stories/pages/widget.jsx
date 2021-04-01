@@ -14,7 +14,7 @@ export default function init() {
         .add('Widget with discount', () => (
             <Widget
                 price={{
-                    originalPriceInCents: 5299,
+                    originalPriceInCents: 5499,
                     discountPriceInCents: 4890,
                     minimalPrice: false,
                 }}
