@@ -5,10 +5,12 @@
     all: inherit;
     display: inline;
     margin-right: 9px;
+    font-weight: 700;
 }
 
 .grover-product-price__periodicity-text {
     all: inherit;
     display: inline;
     margin-left: 9px;
+    font-weight: 700;
 }
