@@ -67,9 +67,16 @@ const Widget = ({
                         classNames.headerSection
                     )}
                 >
-                    <HeaderText className={classNames.headerText}>
-                        <FormattedMessage translationKey="RENT_NOW_HEADER" />
-                    </HeaderText>
+                    <ProductPrice
+                        className={cn(
+                            'grover-widget__product-price',
+                            classNames.priceContainer
+                        )}
+                        classNames={priceClassNames}
+                        originalPriceInCents={price.originalPriceInCents}
+                        discountPriceInCents={price.discountPriceInCents}
+                        minimalPrice={price.minimalPrice}
+                    />
 
                     <Link
                         className={cn(
@@ -84,16 +91,9 @@ const Widget = ({
                     </Link>
                 </HeaderSection>
 
-                <ProductPrice
-                    className={cn(
-                        'grover-widget__product-price',
-                        classNames.priceContainer
-                    )}
-                    classNames={priceClassNames}
-                    originalPriceInCents={price.originalPriceInCents}
-                    discountPriceInCents={price.discountPriceInCents}
-                    minimalPrice={price.minimalPrice}
-                />
+                <HeaderText className={classNames.headerText}>
+                    <FormattedMessage translationKey="RENT_NOW_HEADER" />
+                </HeaderText>
 
                 <LinkButton
                     icon={GroverIcon}
