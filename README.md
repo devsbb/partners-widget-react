@@ -58,6 +58,8 @@ In order to display the Grover button and apply agreed-upon recirculation rules,
 
 `onButtonClick` _Function_: Called on rental button click with React SyntheticEvent parameter. Can be used for analytics.
 
+`showOnlyDiscountedPrice` _Boolean_: If true - only the discounted price will be displayed.
+
 #### Passing Stock Levels
 
 Stock levels are required to decide if the button should be displayed, as well as for applying recirculation rules. You have the choice to pass stock levels either as an absolute value using the `stockAbsolute` property, or pass an enumeration using the `stockEnumerated` property. You need to provide either-or, otherwise, the widget won't display.

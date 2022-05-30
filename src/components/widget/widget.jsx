@@ -49,6 +49,7 @@ const Widget = ({
     unavailable,
     locale,
     onButtonClick,
+    showOnlyDiscountedPrice,
 }) => {
     const priceClassNames = mapClassNamesToPriceClassNames(classNames);
     const buttonClassNames = mapClassNamesToButtonClassNames(classNames);
@@ -76,6 +77,7 @@ const Widget = ({
                         originalPriceInCents={price.originalPriceInCents}
                         discountPriceInCents={price.discountPriceInCents}
                         minimalPrice={price.minimalPrice}
+                        showOnlyDiscountedPrice={showOnlyDiscountedPrice}
                     />
 
                     <Link
@@ -142,6 +144,7 @@ Widget.propTypes = {
     unavailable: PropTypes.bool,
     locale: PropTypes.oneOf(Object.keys(SupportedLocalesEnum)),
     onButtonClick: PropTypes.func,
+    showOnlyDiscountedPrice: PropTypes.bool,
 };
 
 Widget.defaultProps = {
@@ -163,6 +166,7 @@ Widget.defaultProps = {
     unavailable: false,
     locale: SupportedLocalesEnum.de,
     onButtonClick: () => {},
+    showOnlyDiscountedPrice: false,
 };
 
 export default Widget;
