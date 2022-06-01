@@ -16,42 +16,30 @@ const ProductPrice = ({
     showOnlyDiscountedPrice,
 }) => {
     const showPrice = () => {
-        if (discountPriceInCents) {
-            if (showOnlyDiscountedPrice) {
-                return (
-                    <Price
-                        className={cn(
-                            'grover-product-price__price-container',
-                            classNames.price
-                        )}
-                        priceInCents={discountPriceInCents}
-                    />
-                );
-            }
-
+        if (showOnlyDiscountedPrice || !discountPriceInCents) {
             return (
-                <DiscountPrice
+                <Price
                     className={cn(
                         'grover-product-price__price-container',
-                        classNames.discountPriceContainer
+                        classNames.price
                     )}
-                    classNames={{
-                        discountPrice: classNames.discountPrice,
-                        originalPrice: classNames.originalPrice,
-                    }}
-                    discountPriceInCents={discountPriceInCents}
-                    originalPriceInCents={originalPriceInCents}
+                    priceInCents={discountPriceInCents || originalPriceInCents}
                 />
             );
         }
 
         return (
-            <Price
+            <DiscountPrice
                 className={cn(
                     'grover-product-price__price-container',
-                    classNames.price
+                    classNames.discountPriceContainer
                 )}
-                priceInCents={originalPriceInCents}
+                classNames={{
+                    discountPrice: classNames.discountPrice,
+                    originalPrice: classNames.originalPrice,
+                }}
+                discountPriceInCents={discountPriceInCents}
+                originalPriceInCents={originalPriceInCents}
             />
         );
     };
