@@ -13,14 +13,22 @@ const ProductPrice = ({
     discountPriceInCents,
     originalPriceInCents,
     minimalPrice,
-}) => (
-    <PriceText className={className}>
-        {minimalPrice && (
-            <span className="grover-product-price__starting-price-text">
-                <FormattedMessage translationKey="STARTING_PRICE" />
-            </span>
-        )}
-        {discountPriceInCents ? (
+    showOnlyDiscountedPrice,
+}) => {
+    const showPrice = () => {
+        if (showOnlyDiscountedPrice || !discountPriceInCents) {
+            return (
+                <Price
+                    className={cn(
+                        'grover-product-price__price-container',
+                        classNames.price
+                    )}
+                    priceInCents={discountPriceInCents || originalPriceInCents}
+                />
+            );
+        }
+
+        return (
             <DiscountPrice
                 className={cn(
                     'grover-product-price__price-container',
@@ -33,20 +41,23 @@ const ProductPrice = ({
                 discountPriceInCents={discountPriceInCents}
                 originalPriceInCents={originalPriceInCents}
             />
-        ) : (
-            <Price
-                className={cn(
-                    'grover-product-price__price-container',
-                    classNames.price
-                )}
-                priceInCents={originalPriceInCents}
-            />
-        )}
-        <span className="grover-product-price__periodicity-text">
-            <FormattedMessage translationKey="PERIODICITY" />
-        </span>
-    </PriceText>
-);
+        );
+    };
+
+    return (
+        <PriceText className={className}>
+            {minimalPrice && (
+                <span className="grover-product-price__starting-price-text">
+                    <FormattedMessage translationKey="STARTING_PRICE" />
+                </span>
+            )}
+            {showPrice()}
+            <span className="grover-product-price__periodicity-text">
+                <FormattedMessage translationKey="PERIODICITY" />
+            </span>
+        </PriceText>
+    );
+};
 
 ProductPrice.propTypes = {
     className: PropTypes.string,
@@ -59,6 +70,7 @@ ProductPrice.propTypes = {
     minimalPrice: PropTypes.bool.isRequired,
     discountPriceInCents: PropTypes.number,
     originalPriceInCents: PropTypes.number.isRequired,
+    showOnlyDiscountedPrice: PropTypes.bool,
 };
 
 ProductPrice.defaultProps = {
@@ -70,6 +82,7 @@ ProductPrice.defaultProps = {
         originalPrice: null,
     },
     discountPriceInCents: null,
+    showOnlyDiscountedPrice: false,
 };
 
 export default ProductPrice;
