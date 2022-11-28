@@ -1,14 +1,17 @@
 import de from './dictionaries/de';
 import en from './dictionaries/en';
+import es from './dictionaries/es';
 
 export const SupportedLocalesEnum = {
     en: 'en',
     de: 'de',
+    es: 'es',
 };
 
 export const dictionaries = {
     de,
     en,
+    es,
 };
 
 export default function getTranslation(locale, translationKey) {
