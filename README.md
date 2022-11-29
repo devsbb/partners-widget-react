@@ -40,7 +40,7 @@ In order to display the Grover button and apply agreed-upon recirculation rules,
 
 `stockEnumerated` **Required**  _String Enumeration_: See [Passing stock levels](#passing-stock-levels).
 
-`locale` _String_: Language. Supports `de` and `en`. Defaults to `de`.
+`locale` _String_: Language. Supports `de`, `en` and `es`. Defaults to `de`.
 
 `eans` _Array of Strings_: Provide EANs associated with this product variant for improved matching.
 
