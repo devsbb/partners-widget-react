@@ -169,11 +169,11 @@ If you want to override the component's main container, you'll need to pass the 
 className="custom-container-styles"
 ```
 
-Let's say you want to put a maximum size of 400px on the whole component. Simply define your CSS class anywhere like this:
+Let's say you want to put a maximum size of 500px on the whole component. Simply define your CSS class anywhere like this:
 
 ```css
 .custom-container { /* class name can be anything you want */
-    max-width: 400px;
+    max-width: 500px;
 }
 ```
 
@@ -194,3 +194,7 @@ In your testing environments, pass your special staging `accessToken`, and overr
 # Development Guide
 
 Development guide is [here](./docs/DEVELOPMENT_GUIDE.md).
+
+# Releasing a new version
+
+This repository follows the principles of [semantic-release](https://github.com/semantic-release/semantic-release). All PRs must be squashed and followed up with the correct prefixes!
